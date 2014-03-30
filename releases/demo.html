@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>simple-rtmp-server</title>   
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../trunk/research/players/js/srs.utility.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var query = parse_query_string();
+            if (query.ip) {
+                $("#txt_ip").val(query.ip);
+            }
+            
+            $("#main_modal").modal('show');
+            $("#btn_start_demo").click(function(){
+                var ip = $("#txt_ip").val();
+                
+                var url ="../trunk/research/players/srs_player.html?";
+                url += "server=" + ip;
+                url += "&vhost=" + ip;
+                
+                window.location.href = url;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="main_modal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>在线演示</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                <div class="input-prepend input-append">
+                    <span class="add-on">您的SRS服务器IP：</span>
+                    <input class="span3" id="txt_ip" type="text" value="192.168.1.170">
+                </div>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a id="btn_start_demo" href="#" class="btn btn-primary">开始演示</a>
+        </div>
+    </div>
+</body>
