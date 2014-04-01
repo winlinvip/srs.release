@@ -21,6 +21,7 @@
             $("#btn_get").click(function(){
                 var url = get_url();
                 var data = get_req();
+                on_res("");
                 $.ajax({
                     type       : "GET",
                     async      : false,
@@ -40,6 +41,7 @@
             $("#btn_post").click(function(){
                 var url = get_url();
                 var data = get_req();
+                on_res("");
                 $.ajax({
                     type       : "POST",
                     async      : false,
@@ -59,6 +61,7 @@
             $("#btn_put").click(function(){
                 var url = get_url();
                 var data = get_req();
+                on_res("");
                 $.ajax({
                     type       : "PUT",
                     async      : false,
@@ -78,6 +81,7 @@
             $("#btn_delete").click(function(){
                 var url = get_url();
                 var data = get_req();
+                on_res("");
                 $.ajax({
                     type       : "DELETE",
                     async      : false,
