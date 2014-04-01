@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SRS</title>   
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../trunk/research/players/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="../trunk/research/players/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../trunk/research/players/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../trunk/research/players/js/json2.js"></script>
+    <script type="text/javascript">
+        function get_url() {
+            return $("#url").val();
+        }
+        function get_req() {
+            return $("#req").val();
+        }
+        function on_res(str) {
+            return $("#res").text(str);
+        }
+        $(function(){
+            $("#btn_get").click(function(){
+                var url = get_url();
+                var data = get_req();
+                $.ajax({
+                    type       : "GET",
+                    async      : false,
+                    url        : url,
+                    contentType: "text/html",
+                    data       : data,
+                    complete   : function() {
+                    },
+                    error      : function(ret) {
+                        on_res("GET error: " + JSON.stringify(ret));
+                    },
+                    success    : function(ret) {
+                        on_res("GET success: " + JSON.stringify(ret));
+                    }
+                });
+            });
+            $("#btn_post").click(function(){
+                var url = get_url();
+                var data = get_req();
+                $.ajax({
+                    type       : "POST",
+                    async      : false,
+                    url        : url,
+                    contentType: "text/html",
+                    data       : data,
+                    complete   : function() {
+                    },
+                    error      : function(ret) {
+                        on_res("POST error: " + JSON.stringify(ret));
+                    },
+                    success    : function(ret) {
+                        on_res("POST success: " + JSON.stringify(ret));
+                    }
+                });
+            });
+            $("#btn_put").click(function(){
+                var url = get_url();
+                var data = get_req();
+                $.ajax({
+                    type       : "PUT",
+                    async      : false,
+                    url        : url,
+                    contentType: "text/html",
+                    data       : data,
+                    complete   : function() {
+                    },
+                    error      : function(ret) {
+                        on_res("PUT error: " + JSON.stringify(ret));
+                    },
+                    success    : function(ret) {
+                        on_res("PUT success: " + JSON.stringify(ret));
+                    }
+                });
+            });
+            $("#btn_delete").click(function(){
+                var url = get_url();
+                var data = get_req();
+                $.ajax({
+                    type       : "DELETE",
+                    async      : false,
+                    url        : url,
+                    contentType: "text/html",
+                    data       : data,
+                    complete   : function() {
+                    },
+                    error      : function(ret) {
+                        on_res("DELETE error: " + JSON.stringify(ret));
+                    },
+                    success    : function(ret) {
+                        on_res("DELETE success: " + JSON.stringify(ret));
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>HTTP methods</h1>
+    <div class="form-search">
+        <label>URL</label>
+        <input id="url" type="text" class="input-medium search-query span4" value="http://192.168.1.3:1971/api/v1/workers" placeholder="url to do http method...">
+        <button id="btn_get" type="button" class="btn"> GET </button>
+        <button id="btn_post" type="button" class="btn"> POST </button>
+        <button id="btn_put" type="button" class="btn"> PUT </button>
+        <button id="btn_delete" type="button" class="btn"> DELETE </button>
+    </div>
+    <div>
+        <legend>Request</legend>
+        <textarea id="req" rows="7" class="span8"></textarea>
+    </div>
+    <div>
+        <legend>Response</legend>
+        <textarea id="res" rows="7" class="span8"></textarea>
+    </div>
+</div>
