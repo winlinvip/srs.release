@@ -34,7 +34,7 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("GET error: " + JSON.stringify(ret));
+                        on_res(ret.responseText);
                     },
                     success    : function(ret) {
                         on_res(JSON.stringify(ret));
@@ -53,7 +53,7 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("POST error: " + JSON.stringify(ret));
+                        on_res(ret.responseText);
                     },
                     success    : function(ret) {
                         on_res(JSON.stringify(ret));
@@ -72,7 +72,7 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("PUT error: " + JSON.stringify(ret));
+                        on_res(ret.responseText);
                     },
                     success    : function(ret) {
                         on_res(JSON.stringify(ret));
@@ -91,7 +91,7 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("DELETE error: " + JSON.stringify(ret));
+                        on_res(ret.responseText);
                     },
                     success    : function(ret) {
                         on_res(JSON.stringify(ret));
@@ -106,7 +106,7 @@
     <h1>HTTP methods</h1>
     <div class="form-search">
         <label>URL</label>
-        <input id="url" type="text" class="input-medium search-query span4" value="" placeholder="url to do http method...">
+        <input id="url" type="text" class="input-medium search-query span6" value="" placeholder="url to do http method...">
         <button id="btn_get" type="button" class="btn"> GET </button>
         <button id="btn_post" type="button" class="btn"> POST </button>
         <button id="btn_put" type="button" class="btn"> PUT </button>
