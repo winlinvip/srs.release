@@ -34,10 +34,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("GET error: " + JSON.stringify(ret));
+                        on_res("GET error: " + ret);
                     },
                     success    : function(ret) {
-                        on_res("GET success: " + JSON.stringify(ret));
+                        on_res(ret);
                     }
                 });
             });
@@ -53,10 +53,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("POST error: " + JSON.stringify(ret));
+                        on_res("POST error: " + ret);
                     },
                     success    : function(ret) {
-                        on_res("POST success: " + JSON.stringify(ret));
+                        on_res(ret);
                     }
                 });
             });
@@ -72,10 +72,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("PUT error: " + JSON.stringify(ret));
+                        on_res("PUT error: " + ret);
                     },
                     success    : function(ret) {
-                        on_res("PUT success: " + JSON.stringify(ret));
+                        on_res(ret);
                     }
                 });
             });
@@ -91,10 +91,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("DELETE error: " + JSON.stringify(ret));
+                        on_res("DELETE error: " + ret);
                     },
                     success    : function(ret) {
-                        on_res("DELETE success: " + JSON.stringify(ret));
+                        on_res(ret);
                     }
                 });
             });
