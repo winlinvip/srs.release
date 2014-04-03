@@ -20,7 +20,7 @@
         }
         $(function(){
             var query = parse_query_string();
-            $("#url").val("http://" + query.host + ":1985/api/v1/versions");
+            $("#url").val("http://" + query.hostname + ":1985/api/v1/versions");
             
             $("#btn_get").click(function(){
                 var url = get_url();
