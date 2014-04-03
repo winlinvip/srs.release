@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../trunk/research/players/css/bootstrap.min.css"/>
     <script type="text/javascript" src="../trunk/research/players/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../trunk/research/players/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../trunk/research/players/js/json2.js"></script>
     <script type="text/javascript" src="../trunk/research/players/js/srs.utility.js"></script>
     <script type="text/javascript">
         function get_url() {
@@ -33,10 +34,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("GET error: " + ret);
+                        on_res("GET error: " + JSON.stringify(ret));
                     },
                     success    : function(ret) {
-                        on_res(ret);
+                        on_res(JSON.stringify(ret));
                     }
                 });
             });
@@ -52,10 +53,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("POST error: " + ret);
+                        on_res("POST error: " + JSON.stringify(ret));
                     },
                     success    : function(ret) {
-                        on_res(ret);
+                        on_res(JSON.stringify(ret));
                     }
                 });
             });
@@ -71,10 +72,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("PUT error: " + ret);
+                        on_res("PUT error: " + JSON.stringify(ret));
                     },
                     success    : function(ret) {
-                        on_res(ret);
+                        on_res(JSON.stringify(ret));
                     }
                 });
             });
@@ -90,10 +91,10 @@
                     complete   : function() {
                     },
                     error      : function(ret) {
-                        on_res("DELETE error: " + ret);
+                        on_res("DELETE error: " + JSON.stringify(ret));
                     },
                     success    : function(ret) {
-                        on_res(ret);
+                        on_res(JSON.stringify(ret));
                     }
                 });
             });
