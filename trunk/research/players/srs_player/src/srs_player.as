@@ -308,6 +308,9 @@ package
                     if (evt.info.data.hasOwnProperty("srs_primary_authors")) {
                         customItems.push(new ContextMenuItem("PrimaryAuthors: " + evt.info.data.srs_primary_authors));
                     }
+                    if (evt.info.data.hasOwnProperty("srs_id")) {
+                        customItems.push(new ContextMenuItem("SrsID: " + evt.info.data.srs_id));
+                    }
                     contextMenu.customItems = customItems;
                 }
                 
