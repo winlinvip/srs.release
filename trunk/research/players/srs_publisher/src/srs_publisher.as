@@ -148,7 +148,7 @@ package
                 customItems.push(new ContextMenuItem("PrimaryAuthors: " + srs_primary_authors));
             }
             if (srs_id != null) {
-                customItems.push(new ContextMenuItem("SrsID: " + srs_id));
+                customItems.push(new ContextMenuItem("SrsId: " + srs_id));
             }
             contextMenu.customItems = customItems;
         }
