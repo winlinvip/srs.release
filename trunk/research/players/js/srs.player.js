@@ -25,11 +25,38 @@ function SrsPlayer(container, width, height, private_object) {
     this.buffer_time = 0.3; // default to 0.3
     this.volume = 1.0; // default to 100%
     this.callbackObj = null;
+    this.srs_player_url = "srs_player/release/srs_player.swf?_version="+srs_get_version_code();
     
     // callback set the following values.
     this.meatadata = {}; // for on_player_metadata
     this.time = 0; // current stream time.
     this.buffer_length = 0; // current stream buffer length.
+    this.kbps = 0; // current stream bitrate(video+audio) in kbps.
+    this.fps = 0; // current stream video fps.
+    this.rtime = 0; // flash relative time in ms.
+
+    this.__fluency = {
+        total_empty_count: 0,
+        total_empty_time: 0,
+        current_empty_time: 0
+    };
+    this.__fluency.on_stream_empty = function(time) {
+        this.total_empty_count++;
+        this.current_empty_time = time;
+    };
+    this.__fluency.on_stream_full = function(time) {
+        if (this.current_empty_time > 0) {
+            this.total_empty_time += time - this.current_empty_time;
+            this.current_empty_time = 0;
+        }
+    };
+    this.__fluency.calc = function(time) {
+        var den = this.total_empty_count * 4 + this.total_empty_time * 2 + time;
+        if (den > 0) {
+            return time * 100 / den;
+        }
+        return 0;
+    };
 }
 /**
 * user can set some callback, then start the player.
@@ -49,6 +76,8 @@ SrsPlayer.prototype.start = function(url) {
     flashvars.on_player_ready = "__srs_on_player_ready";
     flashvars.on_player_metadata = "__srs_on_player_metadata";
     flashvars.on_player_timer = "__srs_on_player_timer";
+    flashvars.on_player_empty = "__srs_on_player_empty";
+    flashvars.on_player_full = "__srs_on_player_full";
     
     var params = {};
     params.wmode = "opaque";
@@ -60,7 +89,7 @@ SrsPlayer.prototype.start = function(url) {
     var self = this;
     
     swfobject.embedSWF(
-        "srs_player/release/srs_player.swf?_version="+srs_get_version_code(), 
+        this.srs_player_url, 
         this.container,
         this.width, this.height,
         "11.1.0", "js/AdobeFlashPlayerInstall.swf",
@@ -113,6 +142,18 @@ SrsPlayer.prototype.resume = function() {
     this.callbackObj.ref.__resume();
 }
 /**
+ * get the stream fluency, where 100 is 100%.
+ */
+SrsPlayer.prototype.fluency = function() {
+    return this.__fluency.calc(this.rtime);
+}
+/**
+ * get the stream empty count.
+ */
+SrsPlayer.prototype.empty_count = function() {
+    return this.__fluency.total_empty_count;
+}
+/**
 * to set the DAR, for example, DAR=16:9 where num=16,den=9.
 * @param num, for example, 16. 
 *       use metadata width if 0.
@@ -143,12 +184,37 @@ SrsPlayer.prototype.set_bt = function(buffer_time) {
     this.buffer_time = buffer_time;
     this.callbackObj.ref.__set_bt(buffer_time);
 }
+/**
+ * set the srs_player.swf url
+ * @param url, srs_player.swf's url.
+ * @param params, object.
+ */
+ SrsPlayer.prototype.set_srs_player_url = function(url, params) {
+    var query_array = [], 
+        query_string = "", 
+        p;
+    params = params || {}; 
+    params._version = srs_get_version_code();
+    for (p in params) {
+        if (params.hasOwnProperty(p)) {
+            query_array.push(p + "=" + encodeURIComponent(params[p]));
+        }
+    }   
+    query_string = query_array.join("&");
+    this.srs_player_url = url + "?" + query_string;
+}
 SrsPlayer.prototype.on_player_ready = function() {
 }
 SrsPlayer.prototype.on_player_metadata = function(metadata) {
     // ignore.
 }
-SrsPlayer.prototype.on_player_timer = function(time, buffer_length) {
+SrsPlayer.prototype.on_player_timer = function(time, buffer_length, kbps, fps, rtime) {
+    // ignore.
+}
+SrsPlayer.prototype.on_player_empty = function(time) {
+    // ignore.
+}
+SrsPlayer.prototype.on_player_full = function(time) {
     // ignore.
 }
 function __srs_find_player(id) {
@@ -177,7 +243,7 @@ function __srs_on_player_metadata(id, metadata) {
     
     player.on_player_metadata(metadata);
 }
-function __srs_on_player_timer(id, time, buffer_length) {
+function __srs_on_player_timer(id, time, buffer_length, kbps, fps, rtime) {
     var player = __srs_find_player(id);
     
     buffer_length = Math.max(0, buffer_length);
@@ -189,6 +255,19 @@ function __srs_on_player_timer(id, time, buffer_length) {
     // so set the data before invoke it.
     player.time = time;
     player.buffer_length = buffer_length;
-    
-    player.on_player_timer(time, buffer_length);
+    player.kbps = kbps;
+    player.fps = fps;
+    player.rtime = rtime;
+
+    player.on_player_timer(time, buffer_length, kbps, fps, rtime);
+}
+function __srs_on_player_empty(id, time) {
+    var player = __srs_find_player(id);
+    player.__fluency.on_stream_empty(time);
+    player.on_player_empty(time);
+}
+function __srs_on_player_full(id, time) {
+    var player = __srs_find_player(id);
+    player.__fluency.on_stream_full(time);
+    player.on_player_full(time);
 }
