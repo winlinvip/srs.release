@@ -276,15 +276,16 @@ var stars = { data: [0, 1589], label: 'Stars', borderColor: "rgba(191,191,99,1)"
 var forks = { data: [0, 1018], label: 'Forks', borderColor: "rgba(99,145,191,1)", backgroundColor: "rgba(99,145,191,0.4)", pointHoverBackgroundColor: "rgba(99,145,191,1)" };
 var users = { data: [0, 485], label: 'Wechat Users', borderColor: "rgba(143,209,209,1)", backgroundColor: "rgba(143,209,209,0.4)", pointHoverBackgroundColor: "rgba(143,209,209,1)" };
 var codes = { data: [0, 1045], label: 'Codes(x100 lines)', borderColor: "rgba(227,186,186,1)", backgroundColor: "rgba(227,186,186,0.4)", pointHoverBackgroundColor: "rgba(227,186,186,1)" };
+var issues = { data: [0, 727], label: 'Issues', borderColor: "rgba(86,186,227,1)", backgroundColor: "rgba(86,186,227,0.4)", pointHoverBackgroundColor: "rgba(86,186,227,1)" };
 var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
     pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
     pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
 };
 for (var key in options) {
-    codes[key] = users[key] = forks[key] = stars[key] = options[key];
+    issues[key] = codes[key] = users[key] = forks[key] = stars[key] = options[key];
 }
 new Chart(document.getElementById("chart_stars"), { type: 'line', data: {
-    labels: labels, datasets: [stars, forks, users, codes]
+    labels: labels, datasets: [stars, forks, users, codes, issues]
 }, options: {}});
 </script>
 
