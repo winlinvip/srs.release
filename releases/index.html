@@ -223,6 +223,15 @@
         <div>
             <p><a href="#charts" name="charts"><strong>SRS Statistic</strong></a></p>
             <p><canvas id="chart_stars" width="0" height="500"></canvas></p>
+            <ol>
+                <li>Traffic: GITHUB给出的访问量，单位10人（也就是图中数字乘以10就是访问量），数据来源于<a href="https://github.com/ossrs/srs/graphs/traffic" target="_blank">这里</a>。</li>
+                <li>Commit: Develop分支的提交次数，单位10次（也就是图中数字乘以10就是提交次次数），数据来源于<a href="https://github.com/ossrs/srs/tree/develop" target="_blank">这里</a>。</li>
+                <li>Issues: 总的Issue数目，包括打开和已经关闭的，数据来源于<a href="https://github.com/ossrs/srs/issues" target="_blank">这里</a>。</li>
+                <li>Codes: Develop分支的代码行数，单位10行（也就是图中数字乘以10就是代码行数），数据来源于统计命令：<pre>find src/ -name "*.*pp"|xargs wc -l</pre></li>
+                <li>Wechat Users: 微信群成员数目，单位人，数据来源于微信群。</li>
+                <li>Forks: 项目Fork的数目，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+                <li>Stars: 项目被Star的输出，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+            </ol>
         </div>
         <div>
             <p><a href="#news" name="news"><strong>SRS News</strong></a></p>
@@ -277,7 +286,7 @@ var stars = { data: [0, 1589], label: 'Stars', color: "rgba(191,191,99,1)"};
 var forks = { data: [0, 1018], label: 'Forks', color: "rgba(99,145,191,1)"};
 var users = { data: [0, 485], label: 'Wechat Users', color: "rgba(143,209,209,1)"};
 var codes = { data: [0, 104897/100.0], label: 'Codes(x100 lines)', color: "rgba(227,186,186,1)"};
-var issues = { data: [0, 727], label: 'Issues', color: "rgba(86,186,227,1)"};
+var issues = { data: [0, 141+597], label: 'Issues', color: "rgba(86,186,227,1)"};
 var commits = { data: [0, 4072/10.0], label: 'Commits(x10)', color: "rgba(229,109,43,1)"};
 var traffics = { data: [0, 28921/13.0/10], label: 'Traffic(x10)', color: "rgba(129,109,43,1)"};
 var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
