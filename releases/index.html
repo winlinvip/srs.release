@@ -271,22 +271,30 @@
     </footer>
 </body>
 <script>
+
 var labels = ["2013.10", "2017.2"];
-var stars = { data: [0, 1589], label: 'Stars', borderColor: "rgba(191,191,99,1)", backgroundColor: "rgba(191,191,99,0.4)", pointHoverBackgroundColor: "rgba(191,191,99,1)" };
-var forks = { data: [0, 1018], label: 'Forks', borderColor: "rgba(99,145,191,1)", backgroundColor: "rgba(99,145,191,0.4)", pointHoverBackgroundColor: "rgba(99,145,191,1)" };
-var users = { data: [0, 485], label: 'Wechat Users', borderColor: "rgba(143,209,209,1)", backgroundColor: "rgba(143,209,209,0.4)", pointHoverBackgroundColor: "rgba(143,209,209,1)" };
-var codes = { data: [0, 1045], label: 'Codes(x100 lines)', borderColor: "rgba(227,186,186,1)", backgroundColor: "rgba(227,186,186,0.4)", pointHoverBackgroundColor: "rgba(227,186,186,1)" };
-var issues = { data: [0, 727], label: 'Issues', borderColor: "rgba(86,186,227,1)", backgroundColor: "rgba(86,186,227,0.4)", pointHoverBackgroundColor: "rgba(86,186,227,1)" };
-var commits = { data: [0, 407.2], label: 'Commits(x10)', borderColor: "rgba(229,109,43,1)", backgroundColor: "rgba(229,109,43,0.4)", pointHoverBackgroundColor: "rgba(229,109,43,1)" };
+var stars = { data: [0, 1589], label: 'Stars', color: "rgba(191,191,99,1)"};
+var forks = { data: [0, 1018], label: 'Forks', color: "rgba(99,145,191,1)"};
+var users = { data: [0, 485], label: 'Wechat Users', color: "rgba(143,209,209,1)"};
+var codes = { data: [0, 104897/100.0], label: 'Codes(x100 lines)', color: "rgba(227,186,186,1)"};
+var issues = { data: [0, 727], label: 'Issues', color: "rgba(86,186,227,1)"};
+var commits = { data: [0, 4072/10.0], label: 'Commits(x10)', color: "rgba(229,109,43,1)"};
+var traffics = { data: [0, 28921/13.0/10], label: 'Traffic(x10)', color: "rgba(129,109,43,1)"};
 var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
     pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
     pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
 };
-for (var key in options) {
-    commits[key] = issues[key] = codes[key] = users[key] = forks[key] = stars[key] = options[key];
+var datasets = [stars, forks, users, codes, issues, commits, traffics];
+for (var i = 0; i < datasets.length; i++) {
+    var o = datasets[i]; 
+    o["borderColor"] = o["backgroundColor"] = o["pointHoverBackgroundColor"] = o["color"];
+    for (var key in options) {
+        o[key] = options[key];
+    }
+    for (var j = 0; j < o.data.length; j++) {
+        o.data[j] = parseInt(o.data[j] * 10) / 10.0;
+    }
 }
-new Chart(document.getElementById("chart_stars"), { type: 'line', data: {
-    labels: labels, datasets: [stars, forks, users, codes, issues, commits]
-}, options: {}});
+new Chart(document.getElementById("chart_stars"), { type: 'line', data: { labels: labels, datasets: datasets }, options: {} });
 </script>
 
