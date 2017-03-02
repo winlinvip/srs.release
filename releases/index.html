@@ -304,7 +304,7 @@ var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash
 var datasets = [stars, forks, users, codes, issues, commits, traffics];
 for (var i = 0; i < datasets.length; i++) {
     var o = datasets[i]; 
-    for (var j = 0; j < o.data.length; i++) {
+    for (var j = 0; j < o.data.length; j++) {
         o.data[j] /= o.ratio;
     }
     o["borderColor"] = o["backgroundColor"] = o["pointHoverBackgroundColor"] = o["color"];
