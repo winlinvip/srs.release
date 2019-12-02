@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SRS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="javascript:void(0);">SRS</a>
+            <ul class="nav">
+                <li class="active"><a href="https://github.com/ossrs/srs#usage" target="_blank">Usage</a></li>
+                <li><a href="https://github.com/ossrs/srs" target="_blank">GITHUB</a></li>
+                <li><a href="https://github.com/ossrs/srs-docker" target="_blank">Docker</a></li>
+                <li><a href="http://ossrs.net:1985/console" target="_blank">Console</a></li>
+                <li><a href="https://github.com/ossrs/srs/wiki" target="_blank">Wiki</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <p><a href="#binary" name="binary"><strong>SRS Binary</strong></a></p>
+        <p>
+            推荐使用docker，<a href="https://github.com/ossrs/srs-docker/tree/v3#usage">在docker直接运行</a>，
+            或<a href="https://github.com/ossrs/srs-docker/tree/dev#usage">在docker编译和调试</a>，
+            若需要打SRS的安装包，可以运行下面的命令打包：
+        </p>
+        <p>
+<pre>
+echo "Package SRS 3.0 for CentOS7" &&
+git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev ./scripts/package.sh --x86-x64
+</pre>
+        </p>
+        <p>
+<pre>
+echo "Package SRS 2.0 for CentOS7" &&
+git clone https://github.com/ossrs/srs.git && cd srs && git checkout 2.0release &&
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev ./scripts/package.sh --x86-x64
+</pre>
+        </p>
+        <p>
+<pre>
+echo "Package SRS 3.0 for CentOS6" &&
+git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev6 ./scripts/package.sh --x86-x64
+</pre>
+        </p>
+    </div>
+    <div>
+        <p><a href="#usage" name="usage"><strong>SRS Usage</strong></a></p>
+        <p>
+<pre>
+echo "For CentOS6" &&
+wget http://182.92.80.26/srs.release/releases/files/SRS-CentOS6-x86_64-latest.zip &&
+unzip -q SRS-CentOS6-x86_64-latest.zip && cd SRS-CentOS6-x86_64-* && sudo bash INSTALL &&
+sudo /etc/init.d/srs start
+</pre>
+        </p>
+    </div>
+    <div>
+        <p><a href="#releases" name="usage"><strong>SRS Releases</strong></a></p>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>日期</th><th>大版本</th><th>小版本</th><th>类型</th><th>CentOS6</th><th>CentOS7</th><th colspan=3>ReleaseNotes</th>
+        </tr>
+        <tr>
+            <td>2019-10-07</td>
+            <td><a href="#srs3.0a1">SRS-3</a></td>
+            <td><a name="srs3.0a1" href="https://github.com/ossrs/srs/releases/tag/v3.0-a1">3.0a1 alpha<br/>(3.0.60)</a></td>
+            <td>Alpha测试版</td>
+            <td><a href="files/SRS-CentOS6-x86_64-3.0.60.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-CentOS7-x86_64-3.0.60.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v3.0-a0#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2019-10-04</td>
+            <td><a href="#srs3.0a0">SRS-3</a></td>
+            <td><a name="srs3.0a0" href="https://github.com/ossrs/srs/releases/tag/v3.0-a0">3.0a0 alpha<br/>(3.0.56)</a></td>
+            <td>Alpha测试版</td>
+            <td><a href="files/SRS-CentOS6-x86_64-3.0.56.zip">x86_64.zip</a></td>
+            <td>-</td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v3.0-a0#history">ReleaseNotes</a></td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>日期</th><th>大版本</th><th>小版本</th><th>类型</th><th>CentOS6</th><th colspan=3>ReleaseNotes</th>
+        </tr>
+        <tr>
+            <td>2019-04-05</td>
+            <td><a href="#srs2.0r6">SRS-2</a></td>
+            <td><a name="srs2.0r6" href="https://github.com/ossrs/srs/releases/tag/v2.0-r6">2.0r6 release<br/>(2.0.263)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.263.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r6#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2018-10-28</td>
+            <td><a href="#srs2.0r5">SRS-2</a></td>
+            <td><a name="srs2.0r5" href="https://github.com/ossrs/srs/releases/tag/v2.0-r5">2.0r5 release<br/>(2.0.258)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.258.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r5#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2018-08-12</td>
+            <td><a href="#srs2.0r4">SRS-2</a></td>
+            <td><a name="srs2.0r4" href="https://github.com/ossrs/srs/releases/tag/v2.0-r4">2.0r4 release<br/>(2.0.255)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.255.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r5#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2018-07-18</td>
+            <td><a href="#srs2.0r3">SRS-2</a></td>
+            <td><a name="srs2.0r3" href="https://github.com/ossrs/srs/releases/tag/v2.0-r3">2.0r3 release<br/>(2.0.248)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.248.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r3#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2017-06-10</td>
+            <td><a href="#srs2.0r2">SRS-2</a></td>
+            <td><a name="srs2.0r2" href="https://github.com/ossrs/srs/releases/tag/v2.0-r2">2.0r2 release<br/>(2.0.243)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.243.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r2#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2017-04-18</td>
+            <td><a href="#srs2.0r1">SRS-2</a></td>
+            <td><a name="srs2.0r1" href="https://github.com/ossrs/srs/releases/tag/v2.0-r1">2.0r1 release<br/>(2.0.239)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.239.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r1#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2017-03-03</td>
+            <td><a href="#srs2.0r0">SRS-2</a></td>
+            <td><a name="srs2.0r0" href="https://github.com/ossrs/srs/releases/tag/v2.0-r0">2.0r0 release<br/>(2.0.234)</a></td>
+            <td>稳定发布版</td><td><a href="files/SRS-CentOS6-x86_64-2.0.234.zip">x86_64.zip</a></td>
+            <td colspan=3><a href="https://github.com/ossrs/srs/tree/v2.0-r0#history">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2017-01-18</td>
+            <td><a href="#srs2.0b4">SRS-2</a></td>
+            <td><a name="srs2.0b4" href="https://github.com/ossrs/srs/releases/tag/v2.0-b4">2.0b4 release<br/>(2.0.230)</a></td>
+            <td>Beta测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.230.zip">x86_64.zip</a></td><td colspan=3>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2016-12-13</td>
+            <td><a href="#srs2.0b3">SRS-2</a></td>
+            <td><a name="srs2.0b3" href="https://github.com/ossrs/srs/releases/tag/v2.0-b3">2.0b3 release<br/>(2.0.223)</a></td>
+            <td>Beta测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.223.zip">x86_64.zip</a></td><td colspan=3>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2016-11-09</td>
+            <td><a href="#srs2.0b2">SRS-2</a></td>
+            <td><a name="srs2.0b2" href="https://github.com/ossrs/srs/releases/tag/v2.0-b2">2.0b2 release<br/>(2.0.221)</a></td>
+            <td>Beta测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.221.zip">x86_64.zip</a></td><td colspan=3>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2016-09-09</td>
+            <td><a href="#srs2.0b1">SRS-2</a></td>
+            <td><a name="srs2.0b1" href="https://github.com/ossrs/srs/releases/tag/v2.0-b1">2.0b1 release<br/>(2.0.215)</a></td>
+            <td>Beta测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.210.zip">x86_64.zip</a></td><td colspan=3>ReleaseNotes</td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>日期</th><th>大版本</th><th>小版本</th><th>类型</th><th>CentOS6</th><th>Ubuntu14</th><th colspan=2>ReleaseNotes</th>
+        </tr>
+        <tr>
+            <td>2016-08-06</td>
+            <td><a href="#srs2.0b0">SRS-2</a></td>
+            <td><a name="srs2.0b0" href="https://github.com/ossrs/srs/releases/tag/v2.0-b0">2.0b0 release<br/>(2.0.210)</a></td>
+            <td>Beta测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.210.zip">x86_64.zip</a></td><td><a href="#srs_notice_2">NOTICE (2)</a></td>
+            <td colspan=2>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2015-12-23</td>
+            <td><a href="#srs2.0a3">SRS-2</a></td>
+            <td><a name="srs2.0a3" href="https://github.com/ossrs/srs/releases/tag/v2.0-a3">2.0a3 release<br/>(2.0.205)</a></td>
+            <td>Alpha测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.205.zip">x86_64.zip</a></td><td><a href="files/SRS-Ubuntu14-x86_64-2.0.205.zip">x86_64.zip</a></td>
+            <td colspan=2>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2015-10-08</td>
+            <td><a href="#srs2.0a2">SRS-2</a></td>
+            <td><a name="srs2.0a2" href="https://github.com/ossrs/srs/releases/tag/v2.0-a2">2.0a2 release<br/>(2.0.195)</a></td>
+            <td>Alpha测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.195.zip">x86_64.zip</a></td><td><a href="files/SRS-Ubuntu14-x86_64-2.0.195.zip">x86_64.zip</a></td>
+            <td colspan=2>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2015-09-14</td>
+            <td><a href="#srs2.0a1">SRS-2</a></td>
+            <td><a name="srs2.0a1" href="https://github.com/ossrs/srs/releases/tag/v2.0-a1">2.0a1 release<br/>(2.0.189)</a></td>
+            <td>Alpha测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.189.zip">x86_64.zip</a></td><td>    <a href="files/SRS-Ubuntu14-x86_64-2.0.189.zip">x86_64.zip</a></td>
+            <td colspan=2>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2015-08-23</td>
+            <td><a href="#srs2.0a0">SRS-2</a></td>
+            <td><a name="srs2.0a0" href="https://github.com/ossrs/srs/releases/tag/v2.0-a0">2.0a0 release<br/>(2.0.185)</a></td>
+            <td>Alpha测试版本</td><td><a href="files/SRS-CentOS6-x86_64-2.0.185.zip">x86_64.zip</a></td><td><a href="files/SRS-Ubuntu14-x86_64-2.0.185.zip">x86_64.zip</a></td>
+            <td colspan=2>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <th>日期</th><th>大版本</th><th>小版本</th><th>类型</th><th>CentOS6</th><th>Ubuntu12</th><th>ARM/MIPS</th><th>ReleaseNotes</th>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <td>2015-05-23</td>
+            <td><a href="#srs1.0r4">SRS-1</a></td>
+            <td><a name="srs1.0r4" href="https://github.com/ossrs/srs/releases/tag/v1.0-r4">1.0r4 release<br/>(1.0.32)</a></td>
+            <td>发行版本</td><td><a href="files/SRS-CentOS6-x86_64-1.0.32.zip">x86_64.zip</a></td><td><a href="files/SRS-Ubuntu14-x86_64-1.0.32.zip">x86_64.zip</a></td>
+            <td><a href="#srs_notice_1">NOTICE (1)</a><br/></td><td><a href="https://github.com/ossrs/srs/tree/v1.0-r4#simple-rtmp-server">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2015-03-19</td>
+            <td><a href="#srs1.0r3">SRS-1</a></td>
+            <td><a name="srs1.0r3" href="https://github.com/ossrs/srs/releases/tag/v1.0-r3">1.0r3 release<br/>(1.0.30)</a></td>
+            <td>发行版本</td><td><a href="files/SRS-CentOS6-i386-1.0.30.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-1.0.30.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-1.0.30.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-1.0.30.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-1.0.30.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-1.0.30.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-1.0.30.zip">linux-mips.zip</a></td>
+            <td><a href="https://github.com/ossrs/srs/tree/v1.0-r3#simple-rtmp-server">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2015-02-12</td>
+            <td><a href="#srs1.0r2">SRS-1</a></td>
+            <td><a name="srs1.0r2" href="https://github.com/ossrs/srs/releases/tag/v1.0-r2">1.0r2 release<br/>(1.0.27)</a></td>
+            <td>发行版本</td><td><a href="files/SRS-CentOS6-i386-1.0.27.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-1.0.27.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-1.0.27.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-1.0.27.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-1.0.27.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-1.0.27.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-1.0.27.zip">linux-mips.zip</a></td>
+            <td><a href="https://github.com/ossrs/srs/tree/v1.0-r2#simple-rtmp-server">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2015-01-15</td>
+            <td><a href="#srs1.0r1">SRS-1</a></td>
+            <td><a name="srs1.0r1" href="https://github.com/ossrs/srs/releases/tag/v1.0-r1">1.0r1 release<br/>(1.0.21)</a></td>
+            <td>发行版本</td><td><a href="files/SRS-CentOS6-i386-1.0.21.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-1.0.21.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-1.0.21.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-1.0.21.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-1.0.21.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-1.0.21.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-1.0.21.zip">linux-mips.zip</a></td>
+            <td><a href="https://github.com/ossrs/srs/tree/v1.0-r1#simple-rtmp-server">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2014-12-05</td>
+            <td><a href="#srs1.0r0">SRS-1</a></td>
+            <td><a name="srs1.0r0" href="https://github.com/ossrs/srs/releases/tag/v1.0-r0">1.0 release<br/>(1.0.10)</a></td>
+            <td>发行版本</td><td><a href="files/SRS-CentOS6-i386-1.0.10.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-1.0.10.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-1.0.10.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-1.0.10.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-1.0.10.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-1.0.10.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-1.0.10.zip">linux-mips.zip</a></td>
+            <td><a href="https://github.com/ossrs/srs/tree/v1.0-r0#simple-rtmp-server">ReleaseNotes</a></td>
+        </tr>
+        <tr>
+            <td>2014-10-09</td>
+            <td>SRS-1</td>
+            <td>1.0 beta<br/>(1.0.0)</td>
+            <td>缺陷修复<br/>Beta测试</td><td><a href="files/SRS-CentOS6-i386-1.0.0.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-1.0.0.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-1.0.0.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-1.0.0.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-1.0.0.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-1.0.0.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-1.0.0.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-08-03</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline7<br/>(0.9.189)</td>
+            <td>缺陷修复<br/>单元测试<br/>OSX(Darwin)</td><td><a href="files/SRS-CentOS6-i386-0.9.189.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.189.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.189.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.189.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.189.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.189.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-0.9.189.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-07-13</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline6<br/>(0.9.160)</td>
+            <td>缺陷修复<br/>单元测试<br/>测速库</td>
+            <td><a href="files/SRS-CentOS6-i386-0.9.160.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.160.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.160.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.160.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.160.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.160.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-0.9.160.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-06-27</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline5<br/>(0.9.134)</td>
+            <td>缺陷修复<br/>性能优化<br/>支持监控</td><td><a href="files/SRS-CentOS6-i386-0.9.134.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.134.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.134.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.134.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.134.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.134.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-0.9.134.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-05-28</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline4<br/>(0.9.120)</td>
+            <td>缺陷修复</td><td><a href="files/SRS-CentOS6-i386-0.9.120.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.120.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.120.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.120.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.120.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.120.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-0.9.120.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-05-18</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline3<br/>(0.9.105)</td>
+            <td>缺陷修复</td><td><a href="files/SRS-CentOS6-i386-0.9.105.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.105.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.105.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.105.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.105.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.105.zip">raspberry-pi(armv6).zip</a><br/><a href="files/SRS-Ubuntu12-mips-0.9.105.zip">linux-mips.zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-04-28</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline2<br/>(0.9.79)</td>
+            <td>功能冻结</td><td><a href="files/SRS-CentOS6-i386-0.9.79.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.79.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.79.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.79.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.79.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.79.zip">raspberry-pi(armv6).zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-04-07</td>
+            <td>SRS-1</td>
+            <td>1.0 mainline<br/>(0.9.55)</td>
+            <td>功能冻结</td><td><a href="files/SRS-CentOS6-i386-0.9.55.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.55.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.55.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.55.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.55.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.55.zip">raspberry-pi(armv6).zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+        <tr>
+            <td>2014-03-23</td>
+            <td>SRS-1</td>
+            <td>0.9.30</td>
+            <td>开发版</td><td><a href="files/SRS-CentOS6-i386-0.9.30.zip">i386.zip</a><br/><a href="files/SRS-CentOS6-x86_64-0.9.30.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-i386-0.9.30.zip">i386.zip</a><br/><a href="files/SRS-Ubuntu12-x86_64-0.9.30.zip">x86_64.zip</a></td>
+            <td><a href="files/SRS-Ubuntu12-armv7cpu-0.9.30.zip">debian-armhf(armv7).zip</a><br/><a href="files/SRS-RaspberryPi7-armv6l-0.9.39.zip">raspberry-pi(armv6).zip</a></td>
+            <td>ReleaseNotes</td>
+        </tr>
+    </table>
+    <div style="display: none">
+        <p><a href="#charts" name="charts"><strong>SRS Statistic</strong></a></p>
+        <p><canvas id="chart_stars" width="0"   height="360"></canvas></p>
+        <p><canvas id="chart_forks" width="0"   height="360"></canvas></p>
+        <ol>
+            <li>Traffic: GITHUB给出的访问量，单位人，数据来源于<a href="https://github.com/ossrs/srs/graphs/traffic" target="_blank">这里</a>。</li>
+            <li>Commit: Develop分支的提交次数，单位次，数据来源于<a href="https://github.com/ossrs/srs/tree/develop" target="_blank">这里</a>。</li>
+            <li>Issues: 总的Issue数目，包括打开和已经关闭的，数据来源于<a href="https://github.com/ossrs/srs/issues" target="_blank">这里</a>。</li>
+            <li>Codes: Develop分支的代码行数，单位行，数据来源于统计命令：<pre>find src/ -name "*.*pp"|xargs wc -l</pre></li>
+            <li>Wechat Users: 微信公众号订阅者数量，单位人。</li>
+            <li>Forks: 项目Fork的数目，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+            <li>Stars: 项目被Star的输出，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+        </ol>
+    </div>
+    <div>
+        <p><a href="#news" name="news"><strong>SRS News</strong></a></p>
+        <p>2017-06-10 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-r2" target="_blank">srs-2.0.243 release version for srs-2.0r2 released.</a></p>
+        <p>2017-04-18 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-r1" target="_blank">srs-2.0.239 release version for srs-2.0r1 released.</a></p>
+        <p>2017-03-03 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-r0" target="_blank">srs-2.0.234 release version for srs-2.0r0 released.</a></p>
+        <p>2017-01-18 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-b4" target="_blank">srs-2.0.230 beta version for srs-2.0b4 released.</a></p>
+        <p>2016-12-13 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-b3" target="_blank">srs-2.0.223 beta version for srs-2.0b3 released.</a></p>
+        <p>2016-11-09 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-b2" target="_blank">srs-2.0.221 beta version for srs-2.0b2 released.</a></p>
+        <p>2016-09-09 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-b1" target="_blank">srs-2.0.215 beta version for srs-2.0b1 released.</a></p>
+        <p>2016-08-06 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-b0" target="_blank">srs-2.0.210 beta version for srs-2.0b0 released.</a></p>
+        <p>2016-08-06<a name="srs_notice_2" href="javascript:void(0)">NOTICE (2)，关于安装包：</a><font color='red'>为了减轻发行工作量，SRS官网只发布Centos6 64bit2，其他系统用户可自己打包，譬如在centos上面打包命令是: <strong>(cd srs/trunk && bash scripts/package.sh --x86-x64)</strong></font></p>
+        <p>2015-12-23 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-a3" target="_blank">srs-2.0.205 alpha version for srs-2.0a3 released.</a></p>
+        <p>2015-10-08 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-a2" target="_blank">srs-2.0.195 alpha version for srs-2.0a2 released.</a></p>
+        <p>2015-09-14 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-a1" target="_blank">srs-2.0.189 alpha version for srs-2.0a1 released.</a></p>
+        <p>2015-08-23 <a href="https://github.com/ossrs/srs/releases/tag/v2.0-a0" target="_blank">srs-2.0.185 alpha version for srs-2.0a0 released.</a></p>
+        <p>2015-05-23<a name="srs_notice_1" href="javascript:void(0)">NOTICE (1)，关于安装包：</a><font color='red'>为了减轻发行工作量，SRS官网只发布Centos6/Ubuntu14 64bit2，其他系统用户可自己打包，譬如在respberrypi上面打包命令是:<strong>(cd srs/trunk && bash scripts/package.sh --pi)</strong></font></p>
+        <p>2015-03-19 <a href="https://github.com/ossrs/srs/releases/tag/v1.0-r3" target="_blank">srs-1.0.30 release version for srs-1.0r3 released.</a></p>
+        <p>2015-02-12 <a href="https://github.com/ossrs/srs/releases/tag/v1.0-r2" target="_blank">srs-1.0.27 release version for srs-1.0r2</a> released.</p>
+        <p>2015-01-15 <a href="https://github.com/ossrs/srs/releases/tag/v1.0-r1" target="_blank">srs-1.0.21 release version for srs-1.0r1</a> released.</p>
+        <p>2014-12-05 <a href="https://github.com/ossrs/srs/releases/tag/v1.0-r0" target="_blank">srs-1.0.10 release version for srs-1.0</a> released.</p>
+        <p>2014-10-09 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.8" target="_blank">srs-1.0.0 beta version for srs-1.0</a> released, bugs fixed.</p>
+        <p>2014-08-03 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.7" target="_blank">srs-0.9.189 mainline7 version for srs-1.0</a> released, bugs fixed, config utest, support osx(darwin).</p>
+        <p>2014-07-13 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.6" target="_blank">srs-0.9.160 mainline6 version for srs-1.0</a> released, bugs fixed, core/kernel/rtmp utest, refine bandwidth(as/js/srslibrtmp library).</p>
+        <p>2014-06-27 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.5" target="_blank">srs-0.9.134 mainline5 version for srs-1.0</a> released, bugs fixed, performance refine, srs monitor.</p>
+        <p>2014-05-28 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.4" target="_blank">srs-0.9.120 mainline4 version for srs-1.0</a> released, bugs fixed.</p>
+        <p>2014-05-18 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.3" target="_blank">srs-0.9.105 mainline3 version for srs-1.0</a> released, bugs fixed.</p>
+        <p>2014-04-28 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.2" target="_blank">srs-0.9.79 mainline2 version for srs-1.0</a> released, features freezed.</p>
+        <p>2014-04-07 <a href="https://github.com/ossrs/srs/releases/tag/v0.9.1" target="_blank">srs-0.9.55 mainline version for srs-1.0</a> released, features freezed.</p>
+        <p>2014-03-23 srs-0.9.30 mainline version has been released.</p>
+        <p>2013-10-17 srs created</p>
+    </div>
+    <div>
+        <p><a href="#links" name="links"><strong>SRS Links</strong></a></p>
+        <p><a href="https://github.com/ossrs/srs" target="_blank">SRS(simple-rtmp-server)</a></p>
+        <p><a href="http://ossrs.net:1985/console/ng_index.html" target="_blank">SRS控制台</a></p>
+        <p><a href="../http-rest/index.html" target="_blank">HTTP RESTful methods</a></p>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2013-2017 The SRS Project, winlin
+            <a href="http://www.beian.miit.gov.cn/" style="display: none">京ICP备xxx号</a></p>
+    </div>
+</footer>
+</body>
+<script>
+
+    var labels = ["2013.10", "2017.02", '2017.06', '2018.07', '2018.10', '2019.04', '2019.10'];
+    var nginxStars = { data: [0, 0, 0, 0, 0, 7718, 8427], ratio:1, label: 'NGINX-RTMP', color: "rgba(212,90,90,1)"};
+    var nginxFolks = { data: [0, 0, 0, 0, 0, 2258, 2475], ratio:1, label: 'NGINX-RTMP', color: "rgba(212,90,90,1)"};
+    var stars = { data: [0, 1589, 2214, 4126, 4643, 5533, 6527], ratio:1, label: 'SRS-Stars', color: "rgba(191,191,99,1)"};
+    var forks = { data: [0, 1018, 1246, 1825, 1971, 2202, 2481], ratio:1, label: 'SRS-Forks', color: "rgba(99,145,191,1)"};
+    var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
+        pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
+    };
+    var datasets = [nginxStars, nginxFolks, stars, forks];
+    for (var i = 0; i < datasets.length; i++) {
+        var o = datasets[i];
+        for (var j = 0; j < o.data.length; j++) {
+            o.data[j] /= o.ratio;
+        }
+        o["borderColor"] = o["backgroundColor"] = o["pointHoverBackgroundColor"] = o["color"];
+        for (var key in options) {
+            o[key] = options[key];
+        }
+        for (var j = 0; j < o.data.length; j++) {
+            o.data[j] = parseInt(o.data[j] * 10) / 10.0;
+        }
+    }
+
+    new Chart(document.getElementById("chart_stars"), { type: 'line', data: { labels: labels,
+            datasets: [nginxStars, stars] }, options: {} });
+
+    new Chart(document.getElementById("chart_forks"), { type: 'line', data: { labels: labels,
+            datasets: [nginxFolks, forks] }, options: {} });
+
+</script>
+
