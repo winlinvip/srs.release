@@ -25,6 +25,7 @@
     </style>
 </head>
 <body>
+<img src='https://srs.cn-beijing.log.aliyuncs.com/logstores/ossrs-net/track_ua.gif?APIVersion=0.6.0&site=ossrs.net&path=/player/srsplayer'/>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -642,6 +643,11 @@
             }
             if (query.buffer) {
                 url += "&buffer=" + query.buffer;
+            }
+
+            var queries = user_extra_params(query);
+            if (queries && queries.length) {
+                url += '&' + queries.join('&');
             }
             $("#player_url").text($("#txt_url").val()).attr("href", url);
 
