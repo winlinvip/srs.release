@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // to query the swf anti cache.
-function srs_get_version_code() { return "1.31"; }
+function srs_get_version_code() { return "1.32"; }
 
 /**
 * player specified size.
@@ -44,6 +44,27 @@ function update_nav() {
     $("#nav_vlc").attr("href", "vlc.html" + window.location.search);
 }
 
+// Special extra params, such as auth_key.
+function user_extra_params(query, params) {
+    var queries = params || [];
+    var server = (query.server == undefined)? window.location.hostname:query.server;
+    var vhost = (query.vhost == undefined)? window.location.hostname:query.vhost;
+
+    for (var key in query.user_query) {
+        if (key == 'app' || key == 'autostart' || key == 'dir'
+            || key == 'filename' || key == 'host' || key == 'hostname'
+            || key == 'http_port' || key == 'pathname' || key == 'port'
+            || key == 'server' || key == 'stream' || key == 'buffer'
+            || key == 'schema' || key == 'vhost'
+        ) {
+            continue;
+        }
+        queries.push(key + '=' + query[key]);
+    }
+
+    return queries;
+}
+
 /**
 @param server the ip of server. default to window.location.hostname
 @param vhost the vhost of rtmp. default to window.location.hostname
@@ -59,15 +80,13 @@ function build_default_rtmp_url() {
     var port = (query.port == undefined)? schema=="http"?80:1935:query.port;
     var vhost = (query.vhost == undefined)? window.location.hostname:query.vhost;
     var app = (query.app == undefined)? "live":query.app;
-    var stream = (query.stream == undefined)? "demo":query.stream;
+    var stream = (query.stream == undefined)? "livestream":query.stream;
 
     var queries = [];
     if (server != vhost && vhost != "__defaultVhost__") {
         queries.push("vhost=" + vhost);
     }
-    if (query.shp_identify) {
-        queries.push("shp_identify=" + query.shp_identify);
-    }
+    queries = user_extra_params(query, queries);
 
     var uri = schema + "://" + server + ":" + port + "/" + app + "/" + stream + "?" + queries.join('&');
     while (uri.indexOf("?") == uri.length - 1) {
