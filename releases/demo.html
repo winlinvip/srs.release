@@ -18,8 +18,8 @@
             var do_redict = function(){
                 var ip = $("#txt_ip").val();
 
-                var url ="../trunk/research/players/srs_player.html?";
-                url += "server=" + ip;
+                var url ="../trunk/research/players/srs_player.html?autostart=true";
+                url += "&server=" + ip;
                 url += "&vhost=" + ip;
 
                 window.location.href = url;
