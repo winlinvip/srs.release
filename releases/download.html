@@ -36,28 +36,28 @@
 <pre>
 echo "Package SRS 3.0 for CentOS7" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev ./scripts/package.sh --x86-x64
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev ./scripts/package.sh --x86-x64
 </pre>
         </p>
         <p>
 <pre>
 echo "Package SRS 2.0 for CentOS7" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 2.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev ./scripts/package.sh --x86-x64
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev ./scripts/package.sh --x86-x64
 </pre>
         </p>
         <p>
         <pre>
 echo "Package SRS 3.0 for CentOS6" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev6 ./scripts/package.sh --x86-x64
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev6 ./scripts/package.sh --x86-x64
 </pre>
         </p>
         <p>
         <pre>
 echo "Package SRS 2.0 for CentOS6" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 2.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk ossrs/srs:dev6 ./scripts/package.sh --x86-x64
+docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev6 ./scripts/package.sh --x86-x64
 </pre>
         </p>
     </div>
