@@ -25,87 +25,116 @@
                 </ul>
             </div>
         </div>
-        <div>
-            <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=1985">SRS稳定版</a>，演示流：<br/>
-            <ul>
-                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=r.ossrs.net&port=1935&autostart=true&vhost=r.ossrs.net">rtmp://r.ossrs.net/live/livestream</a></li>
-                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=8080&autostart=true&vhost=r.ossrs.net&schema=http">http://r.ossrs.net:8080/live/livestream.flv</a></li>
-                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http">http://r.ossrs.net/live/livestream.m3u8</a></li>
-            </ul>
-        </div>
-        <div>
-            <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=11985">SRS开发版</a>，演示流：<br/>
-            <ul>
-                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=d.ossrs.net&port=11935&autostart=true&vhost=d.ossrs.net">rtmp://d.ossrs.net:11935/live/livestream</a></li>
-                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=18080&autostart=true&vhost=d.ossrs.net&schema=http">http://d.ossrs.net:18080/live/livestream.flv</a></li>
-                <li><a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=11985&autostart=true">webrtc://d.ossrs.net:11985/live/livestream</a></li>
-            </ul>
-        </div>
-        <div>
-            <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
-            <p>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div>
+                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=1985">SRS稳定版</a>，演示流：<br/>
+                        <ul>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=r.ossrs.net&port=1935&autostart=true&vhost=r.ossrs.net">rtmp://r.ossrs.net/live/livestream</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=8080&autostart=true&vhost=r.ossrs.net&schema=http">http://r.ossrs.net:8080/live/livestream.flv</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http">http://r.ossrs.net/live/livestream.m3u8</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=11985">SRS开发版</a>，演示流：<br/>
+                        <ul>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=d.ossrs.net&port=11935&autostart=true&vhost=d.ossrs.net">rtmp://d.ossrs.net:11935/live/livestream</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=18080&autostart=true&vhost=d.ossrs.net&schema=http">http://d.ossrs.net:18080/live/livestream.flv</a></li>
+                            <li><a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=11985&autostart=true">webrtc://d.ossrs.net:11985/live/livestream</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <a href="../images/srs-live-ios.jpg" target="_blank">
+                        <img src="../images/srs-live-ios2.jpg" width="154" height="196" title="扫描二维码下载iOS"/>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div>
+                        <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
+                        <p>
 <pre>
 echo "Run SRS 2.0 in docker" &&
 docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:2
 </pre>
-            </p>
-        </div>
-        <div>
-            <p><a href="https://github.com/ossrs/srs-docker/tree/v3#usage" name="srs3"><strong>SRS3</strong></a></p>
-            <p>
+                        </p>
+                    </div>
+                    <div>
+                        <p><a href="https://github.com/ossrs/srs-docker/tree/v3#usage" name="srs3"><strong>SRS3</strong></a></p>
+                        <p>
 <pre>
 echo "Run SRS 3.0 in docker" &&
 docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:3
 </pre>
-            </p>
-        </div>
-        <div>
-            <p><a href="#binary" name="binary"><strong>Binary</strong></a></p>
-            <p>
-                Recommend to use docker to run, build and debug SRS.<br/>
-                However, you can package, download and install previous versions from <a href="download.html">here</a>.<br/>
-                推荐用docker方式运行SRS，<font color="red">如果你希望使用之前的安装包的方式</font>，<a href="download.html">请点这里</a>。
-            </p>
-        </div>
-        <div>
-            <p><a href="#contact" name="contact"><strong>Contact</strong></a></p>
-            <p>
-                <a href="../images/wx_video.jpg" target="_blank"><img src="../images/wx_video3.jpg" alt="微信视频号: ossrs" title="微信视频号: ossrs"/></a>
-                <a href="../images/srs-server.jpg" target="_blank"><img src="../images/srs-server3.jpg" alt="微信公众号: srs-server" title="微信公众号: srs-server"/></a>
-                <a href="../images/wechat.jpg" target="_blank"><img src="../images/wechat3.jpg" alt="微信号: winlinvip" title="微信号: winlinvip"/></a>
-            </p>
-            <p>
-                <a href="../images/douyin.jpg" target="_blank"><img src="../images/douyin3.jpg" alt="抖音号: ossrs" title="抖音号: ossrs"/></a>
-                <a href="../images/kuaishou.jpg" target="_blank"><img src="../images/kuaishou3.jpg" alt="快手号: winlin" title="快手号: winlin"/></a>
-                <a href="../images/bilibili.jpg" target="_blank"><img src="../images/bilibili3.jpg" alt="B站: 430256302" title="B站: 430256302"/></a>
-            </p>
-        </div>
-        <div>
-            <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
-            <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
-            <p><canvas id="chart_forks" width="0" height="280"></canvas></p>
-            <ol>
-                <li>Traffic: GITHUB给出的访问量，单位人，数据来源于<a href="https://github.com/ossrs/srs/graphs/traffic" target="_blank">这里</a>。</li>
-                <li>Commit: Develop分支的提交次数，单位次，数据来源于<a href="https://github.com/ossrs/srs/tree/develop" target="_blank">这里</a>。</li>
-                <li>Issues: 总的Issue数目，包括打开和已经关闭的，数据来源于<a href="https://github.com/ossrs/srs/issues" target="_blank">这里</a>。</li>
-                <li>Codes: Develop分支的代码行数，单位行，数据来源于统计命令：<pre>find src/ -name "*.*pp"|xargs wc -l</pre></li>
-                <li>Wechat Users: 微信公众号订阅者数量，单位人。</li>
-                <li>Forks: 项目Fork的数目，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
-                <li>Stars: 项目被Star的输出，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
-                <li>
-                    Star历史图: <a href="https://starchart.cc/nginx/nginx.svg">Nginx</a>,
-                    <a href="https://starchart.cc/arut/nginx-rtmp-module.svg">Nginx-RTMP</a>,
-                    <a href="https://starchart.cc/ossrs/srs.svg">SRS</a>
-                </li>
-                <li>
-                    备注：Nginx的Fork数据在19年之前的是拟合的，Star的数据是从上面的历史图上估算的。
-                </li>
-            </ol>
-        </div>
+                        </p>
+                    </div>
+                    <div>
+                        <p><a href="#binary" name="binary"><strong>Binary</strong></a></p>
+                        <p>
+                            Recommend to use docker to run, build and debug SRS.<br/>
+                            However, you can package, download and install previous versions from <a href="download.html">here</a>.<br/>
+                            推荐用docker方式运行SRS，<font color="red">如果你希望使用之前的安装包的方式</font>，<a href="download.html">请点这里</a>。
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div>
+                        <p><a href="#contact" name="contact"><strong>Contact</strong></a></p>
+                        <p>
+                            <a href="../images/wx_video.jpg" target="_blank"><img src="../images/wx_video3.jpg" alt="微信视频号: ossrs" title="微信视频号: ossrs"/></a>
+                            <a href="../images/srs-server.jpg" target="_blank"><img src="../images/srs-server3.jpg" alt="微信公众号: srs-server" title="微信公众号: srs-server"/></a>
+                            <a href="../images/wechat.jpg" target="_blank"><img src="../images/wechat3.jpg" alt="微信号: winlinvip" title="微信号: winlinvip"/></a>
+                        </p>
+                        <p>
+                            <a href="../images/douyin.jpg" target="_blank"><img src="../images/douyin3.jpg" alt="抖音号: ossrs" title="抖音号: ossrs"/></a>
+                            <a href="../images/kuaishou.jpg" target="_blank"><img src="../images/kuaishou3.jpg" alt="快手号: winlin" title="快手号: winlin"/></a>
+                            <a href="../images/bilibili.jpg" target="_blank"><img src="../images/bilibili3.jpg" alt="B站: 430256302" title="B站: 430256302"/></a>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div>
+                        <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
+                        <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
+                        <p><canvas id="chart_forks" width="0" height="280"></canvas></p>
+                        <ol>
+                            <li>Traffic: GITHUB给出的访问量，单位人，数据来源于<a href="https://github.com/ossrs/srs/graphs/traffic" target="_blank">这里</a>。</li>
+                            <li>Commit: Develop分支的提交次数，单位次，数据来源于<a href="https://github.com/ossrs/srs/tree/develop" target="_blank">这里</a>。</li>
+                            <li>Issues: 总的Issue数目，包括打开和已经关闭的，数据来源于<a href="https://github.com/ossrs/srs/issues" target="_blank">这里</a>。</li>
+                            <li>Codes: Develop分支的代码行数，单位行，数据来源于统计命令：<pre>find src/ -name "*.*pp"|xargs wc -l</pre></li>
+                            <li>Wechat Users: 微信公众号订阅者数量，单位人。</li>
+                            <li>Forks: 项目Fork的数目，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+                            <li>Stars: 项目被Star的输出，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
+                            <li>
+                                Star历史图: <a href="https://starchart.cc/nginx/nginx.svg">Nginx</a>,
+                                <a href="https://starchart.cc/arut/nginx-rtmp-module.svg">Nginx-RTMP</a>,
+                                <a href="https://starchart.cc/ossrs/srs.svg">SRS</a>
+                            </li>
+                            <li>
+                                备注：Nginx的Fork数据在19年之前的是拟合的，Star的数据是从上面的历史图上估算的。
+                            </li>
+                        </ol>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2019 SRS <a href="http://www.beian.miit.gov.cn/">京ICP备19056366号</a></p>
+            <p>&copy;2020 SRS <a href="https://beian.miit.gov.cn">京ICP备19056366号</a></p>
         </div>
     </footer>
 </body>
