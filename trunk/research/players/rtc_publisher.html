@@ -28,8 +28,6 @@
                     <!--<li><a id="nav_srs_publisher" href="srs_publisher.html">SRS编码器</a></li>-->
                     <!--<li><a id="nav_srs_chat" href="srs_chat.html">SRS会议</a></li>-->
                     <!--<li><a id="nav_srs_bwt" href="srs_bwt.html">SRS测网速</a></li>-->
-                    <!--<li><a id="nav_jwplayer6" href="jwplayer6.html">JWPlayer6播放器</a></li>-->
-                    <!--<li><a id="nav_osmf" href="osmf.html">AdobeOSMF播放器</a></li>-->
                     <!--<li><a id="nav_vlc" href="vlc.html">VLC播放器</a></li>-->
                     <li><a id="nav_gb28181" href="srs_gb28181.html">GB28181</a></li>
                     <li><a href="https://github.com/ossrs/srs">源码</a></li>
@@ -46,7 +44,13 @@
     </div>
 
     <label></label>
-    <video id="rtc_media_player" autoplay muted></video>
+    <video id="rtc_media_player" width="320" autoplay muted></video>
+
+    <label></label>
+    SessionID: <span id='sessionid'></span>
+
+    <label></label>
+    Simulator: <a href='#' id='simulator-drop'>Drop</a>
 
     <footer>
         <p></p>
@@ -71,10 +75,8 @@
             pc.addTransceiver("video", {direction: "sendonly"});
 
             var constraints = {
-                "audio": true, "video": {
-                    "width": { "min": "480", "max": "1920" },
-                    "height": { "min": "320", "max": "1080" },
-                    "frameRate": { "min": "15", "max": "60" }
+                audio: true, video: {
+                    height: { max: 320 }
                 }
             };
             navigator.mediaDevices.getUserMedia(
@@ -124,6 +126,13 @@
                         contentType:'application/json', dataType: 'json'
                     }).done(function(data) {
                         console.log("Got answer: ", data);
+                        if (data.code) {
+                            reject(data); return;
+                        }
+
+                        var simulator = schema + '//' + urlObject.server + ':' + port + '/rtc/v1/nack/';
+                        $('#sessionid').html(data.sessionid);
+                        $('#simulator-drop').attr('href', simulator + '?drop=1&username=' + data.sessionid);
                         resolve(data.sdp);
                     }).fail(function(reason){
                         reject(reason);
@@ -132,6 +141,12 @@
             }).then(function(answer) {
                 return pc.setRemoteDescription(new RTCSessionDescription({type: 'answer', sdp: answer}));
             }).catch(function(reason) {
+                pc.getLocalStreams().forEach(function(stream){
+                    stream.getTracks().forEach(function(track) {
+                        track.stop();
+                    });
+                });
+                pc.close(); $('#rtc_media_player').hide();
                 throw reason;
             });
         };
