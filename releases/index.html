@@ -48,15 +48,20 @@
                         请扫<font color="red">右侧二维码</font>，安装移动端播放上面的演示流。
                     </div>
                 </td>
-                <td style="text-align: center;">
-                    <a href="../images/srs-live-ios.jpg" target="_blank">
-                        <img src="../images/srs-live-ios2.jpg" width="154" height="196" title="扫描二维码，下载iOS版"/>
-                    </a>
-                </td>
-                <td style="text-align: center;">
-                    <a href="../images/srs-live-android.jpg" target="_blank">
-                        <img src="../images/srs-live-android2.jpg" width="154" height="196" title="扫描二维码，下载Android版"/>
-                    </a>
+                <td class="span6 row-fluid">
+                    <div class="span3">
+                        <br/><br/><br/>
+                        <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
+                        <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label>
+                    </div>
+                    <div class="span6">
+                        <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
+                            <img src="../images/srs-live-ios2.jpg" width="154" height="196" title="扫描二维码，下载iOS版"/>
+                        </a>
+                        <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
+                            <img src="../images/srs-live-android2.jpg" width="154" height="196" title="扫描二维码，下载Android版"/>
+                        </a>
+                    </div>
                 </td>
             </tr>
         </table>
@@ -180,5 +185,15 @@ new Chart(document.getElementById("chart_stars"), { type: 'line', data: { labels
 new Chart(document.getElementById("chart_forks"), { type: 'line', data: { labels: labels,
     datasets: [nginxForks, nginxRTMPForks, srsForks] }, options: {} });
 
+$(function(){
+    $('#show-ios-live').click(function () {
+        $('#srs-live-andriod').hide();
+        $('#srs-live-ios').show();
+    });
+    $('#show-andriod-live').click(function () {
+        $('#srs-live-andriod').show();
+        $('#srs-live-ios').hide();
+    });
+});
 </script>
 
