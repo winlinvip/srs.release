@@ -16,18 +16,18 @@
             }
 
             var do_redict = function(){
-                var ip = $("#txt_ip").val();
-
                 var url ="../trunk/research/players/srs_player.html?autostart=true";
-                url += "&server=" + ip;
-                url += "&vhost=" + ip;
+                if (query.ip) {
+                    url += "&server=" + query.ip;
+                    url += "&vhost=" + query.ip;
+                }
 
                 window.location.href = url;
             };
 
             //$("#main_modal").modal('show');
             //$("#btn_start_demo").click(do_redict);
-            do_redict();
+            setTimeout(do_redict, 0);
         });
     </script>
 </head>
