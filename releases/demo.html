@@ -11,6 +11,10 @@
     <script type="text/javascript">
         $(function(){
             var query = parse_query_string();
+            var host = window.location.host;
+            if (!query.ip && (host === 'ossrs.net' || host === 'www.ossrs.net')) {
+                query.ip = 'r.ossrs.net';
+            }
             if (query.ip) {
                 $("#txt_ip").val(query.ip);
             }
