@@ -323,7 +323,7 @@ function parse_rtmp_url(rtmp_url) {
             vhost = "__defaultVhost__";
         }
     }
-    
+
     // parse the schema
     var schema = "rtmp";
     if (rtmp_url.indexOf("://") > 0) {
