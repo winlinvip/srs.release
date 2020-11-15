@@ -227,6 +227,13 @@
                         api += '/';
                     }
 
+                    // For Alibaba Cloud GRTN
+                    if (urlObject.user_query.grtn || urlObject.server.startsWith('pull.')) {
+                        urlObject.user_query.grtn = true;
+                        api = urlObject.user_query.play || '/' + urlObject.app + '/' + urlObject.stream;
+                        port = (schema === 'https:')? 443 : 80;
+                    }
+
                     apiUrl = schema + '//' + urlObject.server + ':' + port + api;
                     for (var key in urlObject.user_query) {
                         if (key !== 'api' && key !== 'play') {

@@ -131,6 +131,7 @@
                     new RTCSessionDescription({type: 'answer', sdp: session.sdp})
                 );
                 session.simulator = conf.schema + '//' + conf.urlObject.server + ':' + conf.port + '/rtc/v1/nack/';
+
                 return session;
             };
 
@@ -236,6 +237,13 @@
                     var api = urlObject.user_query.play || self.__internal.defaultPath;
                     if (api.lastIndexOf('/') !== api.length - 1) {
                         api += '/';
+                    }
+
+                    // For Alibaba Cloud GRTN
+                    if (urlObject.user_query.grtn || urlObject.server.startsWith('push.')) {
+                        urlObject.user_query.grtn = true;
+                        api = urlObject.user_query.play || '/' + urlObject.app + '/' + urlObject.stream;
+                        port = (schema === 'https:')? 443 : 80;
                     }
 
                     apiUrl = schema + '//' + urlObject.server + ':' + port + api;
