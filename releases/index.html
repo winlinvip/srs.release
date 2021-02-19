@@ -15,7 +15,7 @@
             <div class="navbar-inner">
                 <a class="brand" href="index.html">SRS</a>
                 <ul class="nav">
-                    <li class="active"><a href="app.html" target="_blank">Usage</a></li>
+                    <li class="active"><a href="app.html" target="_blank">Home</a></li>
                     <li><a href="download.html" target="_blank">Binary</a></li>
                     <li><a href="https://github.com/ossrs/srs#usage" target="_blank">Github</a></li>
                     <li><a href="https://github.com/ossrs/srs-docker#usage" target="_blank">Docker</a></li>
@@ -30,6 +30,33 @@
                 </ul>
             </div>
         </div>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div>
+                        <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
+                        <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
+                        <p><canvas id="chart_forks" width="0" height="280"></canvas></p>
+                        <ol>
+                            <li>
+                                项目主页：
+                                <a href="https://github.com/nginx/nginx" target="_blank">Nginx</a>,
+                                <a href="https://github.com/arut/nginx-rtmp-module" target="_blank">NGINX-RTMP</a>,
+                                <a href="https://github.com/ossrs/srs" target="_blank">SRS</a>,
+                                <a href="https://github.com/meetecho/janus-gateway" target="_blank">Janus</a>,
+                            </li>
+                            <li>
+                                Star历史图:
+                                <a href="https://starchart.cc/nginx/nginx.svg">Nginx</a>,
+                                <a href="https://starchart.cc/arut/nginx-rtmp-module.svg">Nginx-RTMP</a>,
+                                <a href="https://starchart.cc/ossrs/srs.svg">SRS</a>
+                                <a href="https://starchart.cc/meetecho/janus-gateway.svg">Janus</a>
+                            </li>
+                        </ol>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <table class="table table-bordered">
             <tr>
                 <td>
@@ -91,6 +118,7 @@
         <table class="table table-bordered">
             <tr>
                 <td>
+                    <!--
                     <div>
                         <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
                         <p>
@@ -100,6 +128,7 @@ docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:2
 </pre>
                         </p>
                     </div>
+                    -->
                     <div>
                         <p><a href="https://github.com/ossrs/srs-docker/tree/v3#usage" name="srs3"><strong>SRS3</strong></a></p>
                         <p>
@@ -130,40 +159,13 @@ docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:3
                             <a href="../images/srs-server.jpg" target="_blank"><img src="../images/srs-server3.jpg" alt="微信公众号: srs-server" title="微信公众号: srs-server"/></a>
                             <a href="../images/wechat.jpg" target="_blank"><img src="../images/wechat3.jpg" alt="微信号: winlinvip" title="微信号: winlinvip"/></a>
                         </p>
+                        <!--
                         <p>
                             <a href="../images/douyin.jpg" target="_blank"><img src="../images/douyin3.jpg" alt="抖音号: ossrs" title="抖音号: ossrs"/></a>
                             <a href="../images/kuaishou.jpg" target="_blank"><img src="../images/kuaishou3.jpg" alt="快手号: winlin" title="快手号: winlin"/></a>
                             <a href="../images/bilibili.jpg" target="_blank"><img src="../images/bilibili3.jpg" alt="B站: 430256302" title="B站: 430256302"/></a>
                         </p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <div>
-                        <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
-                        <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
-                        <p><canvas id="chart_forks" width="0" height="280"></canvas></p>
-                        <ol>
-                            <li>Traffic: GITHUB给出的访问量，单位人，数据来源于<a href="https://github.com/ossrs/srs/graphs/traffic" target="_blank">这里</a>。</li>
-                            <li>Commit: Develop分支的提交次数，单位次，数据来源于<a href="https://github.com/ossrs/srs/tree/develop" target="_blank">这里</a>。</li>
-                            <li>Issues: 总的Issue数目，包括打开和已经关闭的，数据来源于<a href="https://github.com/ossrs/srs/issues" target="_blank">这里</a>。</li>
-                            <li>Codes: Develop分支的代码行数，单位行，数据来源于统计命令：<pre>find src/ -name "*.*pp"|xargs wc -l</pre></li>
-                            <li>Wechat Users: 微信公众号订阅者数量，单位人。</li>
-                            <li>Forks: 项目Fork的数目，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
-                            <li>Stars: 项目被Star的输出，单位次，数据来源于<a href="https://github.com/ossrs/srs" target="_blank">这里</a>。</li>
-                            <li>
-                                Star历史图: <a href="https://starchart.cc/nginx/nginx.svg">Nginx</a>,
-                                <a href="https://starchart.cc/arut/nginx-rtmp-module.svg">Nginx-RTMP</a>,
-                                <a href="https://starchart.cc/ossrs/srs.svg">SRS</a>
-                                <a href="https://starchart.cc/meetecho/janus-gateway.svg">Janus</a>
-                            </li>
-                            <li>
-                                备注：Nginx的Fork数据在19年之前的是拟合的，Star的数据是从上面的历史图上估算的。
-                            </li>
-                        </ol>
+                        -->
                     </div>
                 </td>
             </tr>
@@ -177,15 +179,15 @@ docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:3
 </body>
 <script>
 
-var labels =     ["2013.10", "2017.02", '2018.07', '2019.04', '2019.10', '2020.04', '2020.10', '2021.01'];
-var nginxStars = { data: [0, 2800, 6100, 8100, 9912, 11506, 12716, 13367], ratio:1, label: 'NGINX-Stars', color: "rgba(90,99,191,1)"};
-var nginxForks = { data: [0, 1000, 2300, 3100, 3812, 4325, 4735, 4912], ratio:1, label: 'NGINX-Forks', color: "rgba(90,99,191,1)"};
-var nginxRTMPStars = { data: [0, 4100, 6463, 7718, 8427, 9335, 10078, 10517], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgba(90,191,99,1)"};
-var nginxRTMPForks = { data: [0, 1280, 1909, 2258, 2475, 2742, 2931, 3015], ratio:1, label: 'NGINX-RTMP-Forks', color: "rgba(90,191,99,1)"};
-var srsStars =      { data: [0, 1589, 4126, 5533, 6527, 8210, 9678, 10750], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
-var srsForks =      { data: [0, 1018, 1825, 2202, 2481, 2906, 3276, 3552], ratio:1, label: 'SRS-Forks', color: "rgba(212,90,90,1)"};
-var janusStars =      { data: [0, 940, 1880, 2500, 3000, 3440, 4690, 4949], ratio:1, label: 'Janus-Stars', color: "rgb(90,12,146)"};
-var janusForks =      { data: [0, 324, 649, 863, 1036, 1188, 1620, 1710], ratio:1, label: 'Janus-Forks', color: "rgba(90,12,146)"};
+var labels =     ["2013.10", "2017.02", '2018.07', '2019.04', '2019.10', '2020.04', '2020.10', '2021.02'];
+var nginxStars = { data: [0, 2800, 6100, 8100, 9912, 11506, 12716, 13517], ratio:1, label: 'NGINX-Stars', color: "rgb(90,99,191)"};
+var nginxForks = { data: [0, 1000, 2300, 3100, 3812, 4325, 4735, 4955], ratio:1, label: 'NGINX-Forks', color: "rgba(90,99,191,1)"};
+var nginxRTMPStars = { data: [0, 4100, 6463, 7718, 8427, 9335, 10078, 10610], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgba(90,191,99,1)"};
+var nginxRTMPForks = { data: [0, 1280, 1909, 2258, 2475, 2742, 2931, 3032], ratio:1, label: 'NGINX-RTMP-Forks', color: "rgba(90,191,99,1)"};
+var srsStars =      { data: [0, 1589, 4126, 5533, 6527, 8210, 9678, 10951], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
+var srsForks =      { data: [0, 1018, 1825, 2202, 2481, 2906, 3276, 3588], ratio:1, label: 'SRS-Forks', color: "rgba(212,90,90,1)"};
+var janusStars =      { data: [0, 940, 1880, 2500, 3000, 3440, 4690, 5084], ratio:1, label: 'Janus-Stars', color: "rgb(238,209,21)"};
+var janusForks =      { data: [0, 324, 649, 863, 1036, 1188, 1620, 1751], ratio:1, label: 'Janus-Forks', color: "rgba(238,209,21)"};
 var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
     pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
     pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
