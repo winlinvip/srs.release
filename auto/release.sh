@@ -70,5 +70,10 @@ git tag release-vlatest; git push -f aliyun release-vlatest
 echo "Create new tag latest for aliyun"
 
 # For github.com
+echo "git push origin"
 git push origin
+
+echo "git push origin $SRS_TAG"
 git push origin $SRS_TAG
+
+NICE "Update github ok"
