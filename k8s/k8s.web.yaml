@@ -63,6 +63,10 @@ spec:
       labels:
         app: httpx
     spec:
+      volumes:
+        - name: ssl-volume
+          configMap:
+            name: ossrs.net
       containers:
         - name: httpx
           image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.4
@@ -79,10 +83,17 @@ spec:
           - "-c"
           - >
             ./bin/httpx-static
-            -http=80
+            -http=80 -http=8000
+            -https=443 -https=8443 -lets=false
+            -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+            -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -proxy=http://web-tcp-service:80/
           ports:
             - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: ssl-volume
+              mountPath: /usr/local/etc
 
 ---
 
@@ -99,7 +110,11 @@ spec:
   selector:
     app: httpx
   ports:
-  - name: httpx-tcp-service-80-80
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: httpx-tcp-service-80-80
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: httpx-tcp-service-443-443
+      port: 443
+      protocol: TCP
+      targetPort: 443
