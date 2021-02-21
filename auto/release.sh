@@ -49,6 +49,14 @@ if [[ $CENTOS == YES ]]; then
 fi
 echo "OS is $OS(Darwin:$MACOS, CentOS:$CENTOS, Ubuntu:$UBUNTU) (CentOS7:$CENTOS7)"
 
+if [[ $MACOS == YES ]]; then
+  sed -i '' "s|web:v1.0.*$|web:${SRS_TAG}|g" k8s/k8s.web.yaml
+else
+  sed -i "s|web:v1.0.*$|web:${SRS_TAG}|g" k8s/k8s.web.yaml
+fi
+
+git ci -am "Release $SRS_TAG"
+
 # For aliyun hub.
 NICE "aliyun hub release-v$SRS_TAG"
 
