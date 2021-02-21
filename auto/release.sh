@@ -29,7 +29,7 @@ function ERROR() {
 ##################################################################################
 ##################################################################################
 if [[ -z $SRS_TAG ]]; then
-  SRS_TAG=`(cd $SRS_GIT && git describe --tags --abbrev=0 2>/dev/null)`
+  SRS_TAG=`(cd $SRS_GIT && git describe --tags --abbrev=0 --exclude release-* 2>/dev/null)`
   if [[ $? -ne 0 ]]; then
     echo "Invalid tag $SRS_TAG of $SRS_FILTER in $SRS_GIT"
     exit -1
