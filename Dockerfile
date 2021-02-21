@@ -7,6 +7,9 @@ EXPOSE 80 443
 COPY index.html /usr/local/srs.release/index.html
 COPY crossdomain.xml /usr/local/srs.release/crossdomain.xml
 COPY favicon.ico /usr/local/srs.release/favicon.ico
+COPY privacy /usr/local/srs.release/privacy
+COPY nginx.html /usr/local/srs.release/nginx.html
+COPY 50x.html /usr/local/srs.release/50x.html
 COPY http-rest /usr/local/srs.release/http-rest
 COPY images /usr/local/srs.release/images
 COPY releases /usr/local/srs.release/releases
