@@ -68,3 +68,7 @@ echo "Cleanup tag latest for aliyun"
 
 git tag release-vlatest; git push -f aliyun release-vlatest
 echo "Create new tag latest for aliyun"
+
+# For github.com
+git push origin
+git push origin $SRS_TAG
