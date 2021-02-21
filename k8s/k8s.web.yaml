@@ -1,0 +1,105 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/web:v1.0.5
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 5m
+              memory: 30Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-tcp-service
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: web-tcp-service-80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpx-deploy
+  labels:
+    app: httpx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpx
+  template:
+    metadata:
+      labels:
+        app: httpx
+    spec:
+      containers:
+        - name: httpx
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.4
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 5m
+              memory: 30Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          command: ["/bin/sh"]
+          args:
+          - "-c"
+          - >
+            ./bin/httpx-static
+            -http=80
+            -proxy=http://web-tcp-service:80/
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2ze2nh2hevqwe1nzlpx4g
+  name: httpx-tcp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: httpx
+  ports:
+  - name: httpx-tcp-service-80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80

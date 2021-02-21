@@ -1,0 +1,120 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-rtc-config
+data:
+  srs.conf: |-
+    listen              11935;
+    max_connections     1000;
+    daemon              off;
+    http_api {
+        enabled         on;
+        listen          11985;
+    }
+    http_server {
+        enabled         on;
+        listen          18080;
+    }
+    rtc_server {
+      enabled         on;
+      listen          18000;
+      candidate       d.ossrs.net;
+    }
+    vhost __defaultVhost__ {
+        rtc {
+            enabled     on;
+            bframe      discard;
+        }
+        http_remux {
+            enabled     on;
+        }
+    }
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-rtc-deploy
+  labels:
+    app: dev-rtc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-rtc
+  template:
+    metadata:
+      labels:
+        app: dev-rtc
+    spec:
+      volumes:
+        - name: cache-volume
+          persistentVolumeClaim:
+            claimName: pvc-nas
+        - name: config-volume
+          configMap:
+            name: dev-rtc-config
+      containers:
+      - name: srs
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.34
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 11935
+        - containerPort: 11985
+        - containerPort: 18080
+        - containerPort: 18000
+          name: udp-service
+          protocol: UDP
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/local/srs/conf
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2zetmjpao868s9yzvr5ld
+  name: dev-rtc-tcp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: dev-rtc
+  ports:
+  - name: dev-rtc-tcp-service-11935-11935
+    port: 11935
+    protocol: TCP
+    targetPort: 11935
+  - name: dev-rtc-tcp-service-11985-11985
+    port: 11985
+    protocol: TCP
+    targetPort: 11985
+  - name: dev-rtc-tcp-service-18080-18080
+    port: 18080
+    protocol: TCP
+    targetPort: 18080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2zetmjpao868s9yzvr5ld
+  name: dev-rtc-udp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: dev-rtc
+  ports:
+  - name: dev-rtc-udp-service-18000-18000
+    port: 18000
+    protocol: UDP
+    targetPort: 18000

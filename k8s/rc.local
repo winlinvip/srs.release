@@ -1,0 +1,37 @@
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+
+# HTTP and HTTPS
+cd /usr/local/https &&
+nohup ./httpx-static -r `pwd`/html -http=80 -http=1985 -http=8000 -https=443 -https=8443 -lets=false \
+    -proxy=http://127.0.0.1:1988/ai/v1 -proxy http://r.ossrs.net:1985/api/v1 -proxy http://127.0.0.1:8888/api/webrtc \
+    -proxy http://127.0.0.1:9005/app/v1 -proxy http://127.0.0.1:1987/gif/v1 \
+    -sdomain ossrs.net -skey ossrs.net.key -scert ossrs.net.pem -sdomain www.ossrs.net -skey ossrs.net.key -scert ossrs.net.pem \
+    1>t.log 2>&1 &
+
+# HTTP 1980
+cd /usr/local/https && nohup ./httpx-static -http 1980 -https 0 -root /usr/local/https/html >/dev/null 2>&1 &
+
+# HTTP 1987, SRS event log service.
+cd /usr/local/events && nohup ./http-gif-sls-writer -port=1987 -log=/usr/local/events/logs/event.log >/dev/null 2>&1 &
+
+# RTC demo signaling
+cd /home/winlin/web-80/webrtc-web && nohup ./SignalingService >/dev/null 2>&1 &
+
+# RTC coturn server.
+cd /home/winlin/git/coturn/release/bin && ./turnserver -L 172.17.223.245 -p 3478 -a -u winlin:12345678 \
+    -u guest:12345678 -r ossrs.net --min-port 50000 --max-port 60000 --external-ip 182.92.233.108 --daemon
+
+# Debug srs.
+cd /home/winlin/srs && nohup bash srs.sh >/dev/null 2>&1 &

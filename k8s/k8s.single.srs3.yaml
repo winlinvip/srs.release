@@ -1,0 +1,208 @@
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: srs3-config
+data:
+  srs.conf: |-
+    listen              1935;
+    max_connections     1000;
+    daemon              off;
+    http_api {
+        enabled         on;
+        listen          1985;
+    }
+    http_server {
+        enabled         on;
+        listen          8080;
+    }
+    vhost __defaultVhost__ {
+        http_remux {
+            enabled     on;
+        }
+        hls {
+            enabled         on;
+            hls_dispose     30;
+        }
+    }
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srs3-deploy
+  labels:
+    app: srs3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srs3
+  template:
+    metadata:
+      labels:
+        app: srs3
+    spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: srs3-config
+      - name: cache-volume
+        emptyDir: {}
+      containers:
+      - name: srs
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v3.0-r2
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - containerPort: 1935
+        - containerPort: 1985
+        - containerPort: 8080
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/local/srs/conf
+        - name: cache-volume
+          mountPath: /usr/local/srs/objs/nginx/html
+          readOnly: false
+      - name: srs3-cp-files
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:3
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 20Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi
+        volumeMounts:
+        - name: cache-volume
+          mountPath: /tmp/html
+          readOnly: false
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          if [[ ! -f /tmp/html/index.html ]]; then
+            cp -R ./objs/nginx/html/* /tmp/html
+          fi &&
+          sleep infinity
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2zetmjpao868s9yzvr5ld
+  name: srs3-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: srs3
+  ports:
+  - name: srs3-service-1935-1935
+    port: 1935
+    protocol: TCP
+    targetPort: 1935
+  - name: srs3-service-8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: srs3-api-service-1985-1985
+    port: 1985
+    protocol: TCP
+    targetPort: 1985
+  - name: srs3-origin-service-80-80
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srs3-demo-deploy
+  labels:
+    app: srs3-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srs3-demo
+  template:
+    metadata:
+      labels:
+        app: srs3-demo
+    spec:
+      containers:
+      - name: livestream
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/winlin.300kbps.640x360.baseline.flv -c copy \
+              -f flv rtmp://srs3-service/live/livestream && continue;
+            sleep 3;
+          done
+      - name: bbb
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/bbb.300kbps.640x360.baseline.flv -c copy \
+              -f flv rtmp://srs3-service/live/bbb && continue;
+            sleep 3;
+          done
+      - name: avatar
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
+              -f flv rtmp://srs3-service/live/avatar && continue;
+            sleep 3;
+          done
+
+
+

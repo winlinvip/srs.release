@@ -1,0 +1,233 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: srs4-config
+data:
+  srs.conf: |-
+    listen              1935;
+    max_connections     1000;
+    daemon              off;
+    http_api {
+        enabled         on;
+        listen          1985;
+        https {
+            enabled on;
+            listen 443;
+            key ./etc/d.ossrs.net.key;
+            cert ./etc/d.ossrs.net.pem;
+        }
+    }
+    http_server {
+        enabled         on;
+        listen          80;
+        https {
+            enabled on;
+            listen 8088;
+            key ./etc/d.ossrs.net.key;
+            cert ./etc/d.ossrs.net.pem;
+        }
+    }
+    rtc_server {
+      enabled         on;
+      listen          8000;
+      # Firefox doesn't work with domain.
+      #candidate       d.ossrs.net;
+      candidate       39.97.171.174;
+    }
+    vhost __defaultVhost__ {
+        rtc {
+            enabled     on;
+            bframe      discard;
+        }
+        http_remux {
+            enabled     on;
+        }
+        hls {
+            enabled     on;
+        }
+    }
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srs4-deploy
+  labels:
+    app: srs4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srs4
+  template:
+    metadata:
+      labels:
+        app: srs4
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: srs4-config
+        - name: ssl-volume
+          configMap:
+            name: d.ossrs.net
+      containers:
+      - name: srs4
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.56
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - containerPort: 1935
+        - containerPort: 1985
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 8088
+        - containerPort: 8000
+          name: udp-service
+          protocol: UDP
+        volumeMounts:
+          - name: config-volume
+            mountPath: /usr/local/srs/conf
+          - name: ssl-volume
+            mountPath: /usr/local/srs/etc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2ze7urmv6rmmbywqsoo5r
+  name: srs4-tcp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: srs4
+  ports:
+  - name: srs4-tcp-service-1935-1935
+    port: 1935
+    protocol: TCP
+    targetPort: 1935
+  - name: srs4-tcp-service-1985-1985
+    port: 1985
+    protocol: TCP
+    targetPort: 1985
+  - name: srs4-tcp-service-80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: srs4-tcp-service-443-443
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: srs4-tcp-service-8088-8088
+    port: 8088
+    protocol: TCP
+    targetPort: 8088
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2ze7urmv6rmmbywqsoo5r
+  name: srs4-udp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: srs4
+  ports:
+  - name: srs4-udp-service-8000-8000
+    port: 8000
+    protocol: UDP
+    targetPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srs4-demo-deploy
+  labels:
+    app: srs4-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srs4-demo
+  template:
+    metadata:
+      labels:
+        app: srs4-demo
+    spec:
+      containers:
+      - name: livestream
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/winlin.300kbps.640x360.baseline.flv -c copy \
+              -f flv rtmp://srs4-tcp-service:1935/live/livestream && continue;
+            sleep 3;
+          done
+      - name: bbb
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/bbb.300kbps.640x360.baseline.flv -c copy \
+              -f flv rtmp://srs4-tcp-service:1935/live/bbb && continue;
+            sleep 3;
+          done
+      - name: avatar
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 30Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
+              -f flv rtmp://srs4-tcp-service:1935/live/avatar && continue;
+            sleep 3;
+          done

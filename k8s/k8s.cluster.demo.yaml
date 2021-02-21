@@ -1,0 +1,55 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srs-demo-deploy
+  labels:
+    app: srs-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srs-demo
+  template:
+    metadata:
+      labels:
+        app: srs-demo
+    spec:
+      containers:
+      - name: livestream
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
+              -f flv rtmp://srs-edge-service/live/livestream && continue;
+            sleep 3;
+          done
+      - name: avatar
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
+              -f flv rtmp://srs-edge-service/live/avatar && continue;
+            sleep 3;
+          done
+      - name: rtc
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:encoder
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - >
+          while true; do
+            ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
+              -f flv rtmp://dev-rtc-tcp-service:11935/live/livestream && continue;
+            sleep 3;
+          done
+
