@@ -12,6 +12,7 @@ COPY images /usr/local/srs.release/images
 COPY releases /usr/local/srs.release/releases
 COPY srs-console /usr/local/srs.release/srs-console
 COPY trunk /usr/local/srs.release/trunk
+RUN (cd /usr/local/srs.release && ln -sf srs-console/trunk/research/console)
 # Default workdir and command.
 WORKDIR /usr/local
 CMD ["./bin/httpx-static", \
