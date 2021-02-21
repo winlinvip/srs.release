@@ -49,15 +49,15 @@ if [[ $CENTOS == YES ]]; then
 fi
 echo "OS is $OS(Darwin:$MACOS, CentOS:$CENTOS, Ubuntu:$UBUNTU) (CentOS7:$CENTOS7)"
 
-# For gitee hub.
-NICE "gitee hub release-v$SRS_TAG"
+# For aliyun hub.
+NICE "aliyun hub release-v$SRS_TAG"
 
 git commit -am "Release $SRS_TAG to docker hub"; git push
-echo "Commit changes of tag $SRS_TAG for gitee"
+echo "Commit changes of tag $SRS_TAG for aliyun"
 
 git tag -d release-v$SRS_TAG 2>/dev/null
-echo "Cleanup tag $SRS_TAG for gitee"
+echo "Cleanup tag $SRS_TAG for aliyun"
 
-git tag release-v$SRS_TAG; git push -f gitee release-v$SRS_TAG
-echo "Create new tag $SRS_TAG for gitee"
+git tag release-v$SRS_TAG; git push -f aliyun release-v$SRS_TAG
+echo "Create new tag $SRS_TAG for aliyun"
 echo ""
