@@ -88,6 +88,7 @@ spec:
             -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -proxy=http://web-tcp-service:80/
+            -proxy=http://r.ossrs.net:1985/api/v1/
           ports:
             - containerPort: 80
             - containerPort: 443
