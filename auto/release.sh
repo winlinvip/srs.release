@@ -61,3 +61,10 @@ echo "Cleanup tag $SRS_TAG for aliyun"
 git tag release-v$SRS_TAG; git push -f aliyun release-v$SRS_TAG
 echo "Create new tag $SRS_TAG for aliyun"
 echo ""
+
+NICE "aliyun hub release-vlatest"
+git tag -d release-vlatest 2>/dev/null
+echo "Cleanup tag latest for aliyun"
+
+git tag release-vlatest; git push -f aliyun release-vlatest
+echo "Create new tag latest for aliyun"
