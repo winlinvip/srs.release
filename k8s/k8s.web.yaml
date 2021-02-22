@@ -50,6 +50,62 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: hgsw-deploy
+  labels:
+    app: hgsw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hgsw
+  template:
+    metadata:
+      labels:
+        app: hgsw
+    spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: hgsw-config
+      containers:
+        - name: hgsw
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/hgsw:v1.0.6
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 5m
+              memory: 30Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          command: ["./bin/http-gif-sls-writer", "-c", "./etc/main.conf"]
+          ports:
+            - containerPort: 1987
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/local/etc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hgsw-tcp-service
+spec:
+  type: ClusterIP
+  selector:
+    app: hgsw
+  ports:
+  - name: hgsw-tcp-service-1987-1987
+    port: 1987
+    protocol: TCP
+    targetPort: 1987
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: httpx-deploy
   labels:
     app: httpx
@@ -83,12 +139,13 @@ spec:
           - "-c"
           - >
             ./bin/httpx-static
-            -http=80 -http=8000
+            -http=80
             -https=443 -https=8443 -lets=false
             -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+            -proxy=http://r.ossrs.net:1985/api/v1/
+            -proxy=http://hgsw-tcp-service:1987/gif/v1
             -proxy=http://web-tcp-service:80/
-            -proxy=http://r.ossrs.net:1985/api/v1
           ports:
             - containerPort: 80
             - containerPort: 443
@@ -115,7 +172,19 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 80
+    - name: httpx-tcp-service-8000-80
+      port: 8000
+      protocol: TCP
+      targetPort: 80
+    - name: httpx-tcp-service-1985-80
+      port: 1985
+      protocol: TCP
+      targetPort: 80
     - name: httpx-tcp-service-443-443
       port: 443
+      protocol: TCP
+      targetPort: 443
+    - name: httpx-tcp-service-8443-443
+      port: 8443
       protocol: TCP
       targetPort: 443
