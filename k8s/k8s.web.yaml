@@ -125,7 +125,7 @@ spec:
             name: ossrs.net
       containers:
         - name: httpx
-          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.4
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.5
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -165,6 +165,9 @@ metadata:
   name: httpx-tcp-service
 spec:
   type: LoadBalancer
+  # Must set to Local to get the client real IP.
+  # https://www.alibabacloud.com/help/zh/doc-detail/86531.htm
+  externalTrafficPolicy: Local
   selector:
     app: httpx
   ports:

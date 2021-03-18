@@ -80,7 +80,7 @@ spec:
         resources:
           requests:
             cpu: 5m
-            memory: 30Mi
+            memory: 100Mi
           limits:
             cpu: 500m
             memory: 500Mi
@@ -180,10 +180,10 @@ spec:
         resources:
           requests:
             cpu: 5m
-            memory: 30Mi
+            memory: 100Mi
           limits:
             cpu: 200m
-            memory: 200Mi
+            memory: 400Mi
         command: ["/bin/sh"]
         args:
         - "-c"
@@ -199,10 +199,10 @@ spec:
         resources:
           requests:
             cpu: 5m
-            memory: 30Mi
+            memory: 100Mi
           limits:
             cpu: 200m
-            memory: 200Mi
+            memory: 400Mi
         command: ["/bin/sh"]
         args:
         - "-c"
@@ -218,10 +218,10 @@ spec:
         resources:
           requests:
             cpu: 5m
-            memory: 30Mi
+            memory: 100Mi
           limits:
             cpu: 200m
-            memory: 200Mi
+            memory: 400Mi
         command: ["/bin/sh"]
         args:
         - "-c"
