@@ -178,11 +178,11 @@ docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:3
 </body>
 <script>
 
-var labels =            ['2016.04', '2016.10', '2017.04', '2017.10', '2018.04', '2018.10', '2019.04', '2019.10', '2020.04', '2020.10', '2021.03'];
-var nginxStars =        { data: [1200, 2300, 3400, 4500, 5700, 7100, 8500, 9912, 11506, 12716, 13708], ratio:1, label: 'NGINX-Stars', color: "rgba(90,191,99,1)"};
-var nginxRTMPStars =    { data: [3000, 3800, 4500, 5300, 6100, 6900, 7718, 8500, 9335, 10078, 10730], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgb(90,99,191)"};
-var srsStars =          { data: [400, 1000, 1800, 2600, 3500, 4500, 5533, 6527, 8210, 9678, 11188], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
-var janusStars =        { data: [300, 700, 1000, 1300,  1700, 2100, 2500, 3000, 3440, 4690, 5399], ratio:1, label: 'Janus-Stars', color: "rgb(238,209,21)"};
+var labels =            ['2016.04', '2016.10', '2017.04', '2017.10', '2018.04', '2018.10', '2019.04', '2019.10', '2020.04', '2020.10', '2021.04'];
+var nginxStars =        { data: [1200, 2300, 3400, 4500, 5700, 7100, 8500, 9912, 11506, 12716, 13851], ratio:1, label: 'NGINX-Stars', color: "rgba(90,191,99,1)"};
+var nginxRTMPStars =    { data: [3000, 3800, 4500, 5300, 6100, 6900, 7718, 8500, 9335, 10078, 10819], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgb(90,99,191)"};
+var srsStars =          { data: [400, 1000, 1800, 2600, 3500, 4500, 5533, 6527, 8210, 9678, 11342], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
+var janusStars =        { data: [300, 700, 1000, 1300,  1700, 2100, 2500, 3000, 3440, 4690, 5487], ratio:1, label: 'Janus-Stars', color: "rgb(238,209,21)"};
 var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
     pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
     pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
