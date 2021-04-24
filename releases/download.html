@@ -37,37 +37,18 @@
             或<a href="https://github.com/ossrs/srs-docker/tree/dev#usage">在docker编译和调试</a>，
             若需要打SRS的安装包，可以运行下面的命令打包：
         </p>
-        <p>
-<pre>
+        <p><pre>
 echo "Package SRS 3.0 for CentOS7" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
 docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev \
-    ./scripts/package.sh --x86-x64
-</pre>
-        </p>
-        <p>
-        <pre>
-echo "Package SRS 3.0 for CentOS6" &&
-git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev6 \
-    ./scripts/package.sh --x86-x64
-</pre>
-        </p>
+    ./scripts/package.sh --x86-x64</pre></p>
     </div>
     <div>
         <p><a href="#usage" name="usage"><strong>SRS Usage</strong></a></p>
-        <p>
-<pre>
+        <p><pre>
 echo "For CentOS7" &&
 unzip -q SRS-CentOS7-x86_64-*.zip && cd SRS-CentOS7-x86_64-* && sudo bash INSTALL &&
-sudo systemctl start srs
-</pre>
-<pre>
-echo "For CentOS6" &&
-unzip -q SRS-CentOS6-x86_64-*.zip && cd SRS-CentOS6-x86_64-* && sudo bash INSTALL &&
-sudo /etc/init.d/srs start
-</pre>
-        </p>
+sudo systemctl start srs</pre></p>
     </div>
     <div>
         <p><a href="#releases" name="releases"><strong>SRS Releases</strong></a></p>
