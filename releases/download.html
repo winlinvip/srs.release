@@ -46,25 +46,9 @@ docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs
 </pre>
         </p>
         <p>
-<pre>
-echo "Package SRS 2.0 for CentOS7" &&
-git clone https://github.com/ossrs/srs.git && cd srs && git checkout 2.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev \
-    ./scripts/package.sh --x86-x64
-</pre>
-        </p>
-        <p>
         <pre>
 echo "Package SRS 3.0 for CentOS6" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev6 \
-    ./scripts/package.sh --x86-x64
-</pre>
-        </p>
-        <p>
-        <pre>
-echo "Package SRS 2.0 for CentOS6" &&
-git clone https://github.com/ossrs/srs.git && cd srs && git checkout 2.0release &&
 docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev6 \
     ./scripts/package.sh --x86-x64
 </pre>
@@ -73,6 +57,11 @@ docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs
     <div>
         <p><a href="#usage" name="usage"><strong>SRS Usage</strong></a></p>
         <p>
+<pre>
+echo "For CentOS7" &&
+unzip -q SRS-CentOS7-x86_64-*.zip && cd SRS-CentOS7-x86_64-* && sudo bash INSTALL &&
+sudo systemctl start srs
+</pre>
 <pre>
 echo "For CentOS6" &&
 unzip -q SRS-CentOS6-x86_64-*.zip && cd SRS-CentOS6-x86_64-* && sudo bash INSTALL &&
