@@ -40,7 +40,7 @@
         <p><pre>
 echo "Package SRS 3.0 for CentOS7" &&
 git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
-docker run -it -v `pwd`:/tmp/srs -w /tmp/srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev \
+docker run --rm -it -v `pwd`:/srs -w /srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev \
     ./scripts/package.sh --x86-x64</pre></p>
     </div>
     <div>
