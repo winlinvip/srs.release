@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>simple-rtmp-server</title>
+</head>
+<body>
+<img src='https://ossrs.net:8443/gif/v1/sls.gif?site=ossrs.net&path=/release/paypal'/>
+    <div style="display:none">
+        <h1>Donate SRS</h1>
+        Paypal: winlin@vip.126.com <br/>
+        <!-- https://developer.paypal.com/webapps/developer/docs/classic/paypal-payments-standard/integration-guide/Appx_websitestandard_htmlvariables/ -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_donations">
+            <input type="hidden" name="business" value="HD9QFFYA6SG2Q">
+            <input type="hidden" name="item_name" value="Donate SRS">
+            <input type="hidden" name="lc" value="US">
+            <input type="hidden" name="bn" value="PP-SubscriptionsBF">
+            <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif"
+                   border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <div>
+        <strong>
+            Redirecting to paypal, a moment please...
+        </strong>
+    </div>
+    <script type="text/javascript">
+        document.forms[0].submit();
+    </script>
+</body>
+</html>
