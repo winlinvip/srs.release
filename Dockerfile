@@ -19,6 +19,7 @@ COPY donation /usr/local/srs.release/donation
 RUN (cd /usr/local/srs.release && ln -sf . srs.release)
 RUN (cd /usr/local/srs.release && ln -sf trunk/research/console)
 RUN (cd /usr/local/srs.release && ln -sf trunk/research/players)
+RUN (cd /usr/local/srs.release && ln -sf trunk/3rdparty/signaling/www/demos)
 # Default workdir and command.
 WORKDIR /usr/local
 CMD ["./bin/httpx-static", \

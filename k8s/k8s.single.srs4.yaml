@@ -38,7 +38,7 @@ data:
     vhost __defaultVhost__ {
         rtc {
             enabled     on;
-            bframe      discard;
+            rtc_to_rtmp on;
         }
         http_remux {
             enabled     on;
@@ -75,7 +75,7 @@ spec:
             name: d.ossrs.net
       containers:
       - name: srs4
-        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.84
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.95
         imagePullPolicy: IfNotPresent
         resources:
           requests:
