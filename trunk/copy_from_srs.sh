@@ -1,5 +1,17 @@
 #!/bin/bash
 
+if [[ ! -d research ]]; then
+  cd trunk
+fi
+if [[ ! -d research ]]; then
+  echo "no trunk"
+  exit -1
+fi
+if [[ ! -d ~/git/srs ]]; then
+  echo "no srs"
+  exit -1
+fi
+
 echo "Copy console"
 rm -rf research/console && cp -R ~/git/srs/trunk/research/console research/
 
