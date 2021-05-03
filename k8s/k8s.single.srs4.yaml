@@ -75,7 +75,7 @@ spec:
             name: d.ossrs.net
       containers:
       - name: srs4
-        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.95
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:v4.0.96
         imagePullPolicy: IfNotPresent
         resources:
           requests:

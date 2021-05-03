@@ -139,13 +139,13 @@ spec:
           - "-c"
           - >
             ./bin/httpx-static
-            -http=80
-            -https=443 -https=8443 -lets=false
-            -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
-            -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
-            -proxy=http://r.ossrs.net:1985/api/v1/
-            -proxy=http://hgsw-tcp-service:1987/gif/v1
-            -proxy=http://web-tcp-service:80/
+              -http=80
+              -https=443 -https=8443 -lets=false
+              -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+              -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+              -proxy=http://r.ossrs.net:1985/api/v1/
+              -proxy=http://hgsw-tcp-service:1987/gif/v1
+              -proxy=http://web-tcp-service:80/
           ports:
             - containerPort: 80
             - containerPort: 443
