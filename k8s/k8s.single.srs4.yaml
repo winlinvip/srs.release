@@ -11,22 +11,10 @@ data:
     http_api {
         enabled         on;
         listen          1985;
-        https {
-            enabled on;
-            listen 443;
-            key ./etc/d.ossrs.net.key;
-            cert ./etc/d.ossrs.net.pem;
-        }
     }
     http_server {
         enabled         on;
-        listen          80;
-        https {
-            enabled on;
-            listen 8088;
-            key ./etc/d.ossrs.net.key;
-            cert ./etc/d.ossrs.net.pem;
-        }
+        listen          8080;
     }
     rtc_server {
       enabled         on;
@@ -87,9 +75,7 @@ spec:
         ports:
         - containerPort: 1935
         - containerPort: 1985
-        - containerPort: 80
-        - containerPort: 443
-        - containerPort: 8088
+        - containerPort: 8080
         - containerPort: 8000
           name: udp-service
           protocol: UDP
@@ -114,26 +100,74 @@ spec:
   selector:
     app: srs4
   ports:
-  - name: srs4-tcp-service-1935-1935
+  - name: srs4-service-1935-1935
     port: 1935
     protocol: TCP
     targetPort: 1935
-  - name: srs4-tcp-service-1985-1985
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: srs4-service
+spec:
+  type: ClusterIP
+  selector:
+    app: srs4
+  ports:
+  - name: srs4-service-1935-1935
+    port: 1935
+    protocol: TCP
+    targetPort: 1935
+  - name: srs4-service-1985-1985
     port: 1985
     protocol: TCP
     targetPort: 1985
-  - name: srs4-tcp-service-80-80
+  - name: srs4-service-8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2ze7urmv6rmmbywqsoo5r
+  name: httpx-dsrs-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: httpx-dsrs
+  ports:
+  - name: httpx-dsrs-service-1985-80
+    port: 1985
+    protocol: TCP
+    targetPort: 80
+  - name: httpx-dsrs-service-8080-80
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  - name: httpx-dsrs-service-80-80
     port: 80
     protocol: TCP
     targetPort: 80
-  - name: srs4-tcp-service-443-443
+  - name: httpx-dsrs-service-443-443
     port: 443
     protocol: TCP
     targetPort: 443
-  - name: srs4-tcp-service-8088-8088
+  - name: httpx-dsrs-service-8443-443
+    port: 8443
+    protocol: TCP
+    targetPort: 443
+  - name: httpx-dsrs-service-8088-443
     port: 8088
     protocol: TCP
-    targetPort: 8088
+    targetPort: 443
 
 ---
 
@@ -190,7 +224,7 @@ spec:
         - >
           while true; do
             ffmpeg -re -i ./doc/winlin.300kbps.640x360.baseline.flv -c copy \
-              -f flv rtmp://srs4-tcp-service:1935/live/livestream && continue;
+              -f flv rtmp://srs4-service:1935/live/livestream && continue;
             sleep 3;
           done
       - name: bbb
@@ -209,7 +243,7 @@ spec:
         - >
           while true; do
             ffmpeg -re -i ./doc/bbb.300kbps.640x360.baseline.flv -c copy \
-              -f flv rtmp://srs4-tcp-service:1935/live/bbb && continue;
+              -f flv rtmp://srs4-service:1935/live/bbb && continue;
             sleep 3;
           done
       - name: avatar
@@ -228,6 +262,56 @@ spec:
         - >
           while true; do
             ffmpeg -re -i ./doc/source.200kbps.768x320.flv -c copy \
-              -f flv rtmp://srs4-tcp-service:1935/live/avatar && continue;
+              -f flv rtmp://srs4-service:1935/live/avatar && continue;
             sleep 3;
           done
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpx-dsrs-deploy
+  labels:
+    app: httpx-dsrs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpx-dsrs
+  template:
+    metadata:
+      labels:
+        app: httpx-dsrs
+    spec:
+      volumes:
+        - name: ssl-volume
+          configMap:
+            name: d.ossrs.net
+      containers:
+        - name: httpx-dsrs
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.5
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 5m
+              memory: 30Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          command: ["/bin/sh"]
+          args:
+          - "-c"
+          - >
+            ./bin/httpx-static
+            -http=80 -https=443 -lets=false
+            -sdomain d.ossrs.net -skey ./etc/d.ossrs.net.key -scert ./etc/d.ossrs.net.pem
+            -proxy=http://srs4-service:1985/rtc/
+            -proxy=http://srs4-service:1985/api/
+            -proxy=http://srs4-service:8080/
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: ssl-volume
+              mountPath: /usr/local/etc
