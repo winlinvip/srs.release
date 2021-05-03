@@ -34,13 +34,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-tcp-service
+  name: web-service
 spec:
   type: ClusterIP
   selector:
     app: web
   ports:
-  - name: web-tcp-service-80-80
+  - name: web-service-80-80
     port: 80
     protocol: TCP
     targetPort: 80
@@ -106,25 +106,25 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpx-deploy
+  name: httpx-web-deploy
   labels:
-    app: httpx
+    app: httpx-web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: httpx
+      app: httpx-web
   template:
     metadata:
       labels:
-        app: httpx
+        app: httpx-web
     spec:
       volumes:
         - name: ssl-volume
           configMap:
             name: ossrs.net
       containers:
-        - name: httpx
+        - name: httpx-web
           image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.5
           imagePullPolicy: IfNotPresent
           resources:
@@ -139,13 +139,13 @@ spec:
           - "-c"
           - >
             ./bin/httpx-static
-              -http=80
-              -https=443 -https=8443 -lets=false
-              -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
-              -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
-              -proxy=http://r.ossrs.net:1985/api/v1/
-              -proxy=http://hgsw-tcp-service:1987/gif/v1
-              -proxy=http://web-tcp-service:80/
+            -http=80
+            -https=443 -https=8443 -lets=false
+            -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+            -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+            -proxy=http://r.ossrs.net:1985/api/v1/
+            -proxy=http://hgsw-tcp-service:1987/gif/v1
+            -proxy=http://web-service:80/
           ports:
             - containerPort: 80
             - containerPort: 443
@@ -162,32 +162,32 @@ metadata:
     service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
     service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: "true"
     service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-2ze2nh2hevqwe1nzlpx4g
-  name: httpx-tcp-service
+  name: httpx-web-service
 spec:
   type: LoadBalancer
   # Must set to Local to get the client real IP.
   # https://www.alibabacloud.com/help/zh/doc-detail/86531.htm
   externalTrafficPolicy: Local
   selector:
-    app: httpx
+    app: httpx-web
   ports:
-    - name: httpx-tcp-service-80-80
+    - name: httpx-web-service-80-80
       port: 80
       protocol: TCP
       targetPort: 80
-    - name: httpx-tcp-service-8000-80
+    - name: httpx-web-service-8000-80
       port: 8000
       protocol: TCP
       targetPort: 80
-    - name: httpx-tcp-service-1985-80
+    - name: httpx-web-service-1985-80
       port: 1985
       protocol: TCP
       targetPort: 80
-    - name: httpx-tcp-service-443-443
+    - name: httpx-web-service-443-443
       port: 443
       protocol: TCP
       targetPort: 443
-    - name: httpx-tcp-service-8443-443
+    - name: httpx-web-service-8443-443
       port: 8443
       protocol: TCP
       targetPort: 443
