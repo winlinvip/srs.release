@@ -271,6 +271,54 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: sig-deploy
+  labels:
+    app: sig
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sig
+  template:
+    metadata:
+      labels:
+        app: sig
+    spec:
+      containers:
+      - name: sig
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/signaling:v1.0.4
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 5m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - containerPort: 1989
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sig-service
+spec:
+  type: ClusterIP
+  selector:
+    app: sig
+  ports:
+    - name: sig-service-1989-1989
+      port: 1989
+      protocol: TCP
+      targetPort: 1989
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: httpx-dsrs-deploy
   labels:
     app: httpx-dsrs
@@ -308,6 +356,7 @@ spec:
             -sdomain d.ossrs.net -skey ./etc/d.ossrs.net.key -scert ./etc/d.ossrs.net.pem
             -proxy=http://srs4-service:1985/rtc/
             -proxy=http://srs4-service:1985/api/
+            -proxy=http://sig-service:1989/sig/
             -proxy=http://srs4-service:8080/
           ports:
             - containerPort: 80
