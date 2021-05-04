@@ -286,7 +286,7 @@ spec:
     spec:
       containers:
       - name: sig
-        image: registry.cn-hangzhou.aliyuncs.com/ossrs/signaling:v1.0.4
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/signaling:v1.0.5
         imagePullPolicy: IfNotPresent
         resources:
           requests:
