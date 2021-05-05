@@ -100,7 +100,7 @@
         </p>
         <p><pre>
 echo "Package SRS 3.0 for CentOS7" &&
-git clone https://github.com/ossrs/srs.git && cd srs && git checkout 3.0release &&
+git clone -b 3.0release https://gitee.com/ossrs/srs.git && cd srs &&
 docker run --rm -it -v `pwd`:/srs -w /srs/trunk registry.cn-hangzhou.aliyuncs.com/ossrs/srs:dev \
     ./scripts/package.sh --x86-x64</pre></p>
     </div>
