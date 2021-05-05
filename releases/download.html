@@ -7,27 +7,88 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+    <style>
+        body{
+            padding-top: 30px;
+        }
+    </style>
 </head>
 <body>
 <img src='https://ossrs.net:8443/gif/v1/sls.gif?site=ossrs.net&path=/release/binary'/>
 <div class="container">
-    <div class="navbar">
+    <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <a class="brand" href="index.html">SRS</a>
-            <ul class="nav">
-                <li><a href="app.html" target="_blank">Home</a></li>
-                <li class="active"><a href="download.html" target="_blank">Binary</a></li>
-                <li><a href="https://github.com/ossrs/srs#usage" target="_blank">Github</a></li>
-                <li><a href="https://github.com/ossrs/srs-docker#usage" target="_blank">Docker</a></li>
-                <li><a href="http://ossrs.net:1985/console" target="_blank">Console</a></li>
-                <li><a href="demo.html?from=release" target="_blank">Player</a></li>
-                <li><a href="https://github.com/ossrs/srs/wiki" target="_blank">Wiki</a></li>
-                <li>
-                    <a href="https://github.com/ossrs/srs">
-                        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ossrs/srs?style=social">
-                    </a>
-                </li>
-            </ul>
+            <div class="container">
+                <a class="brand" href="javascript:void(0)">SRS</a>
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            安装<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="download.html">Binary安装包</a></li>
+                            <li><a href="https://github.com/ossrs/srs-docker/tree/v3#usage" target="_blank">SRS 3.0 Docker镜像</a></li>
+                            <li><a href="https://github.com/ossrs/srs-docker/tree/v4#usage" target="_blank">SRS 4.0 Docker镜像</a></li>
+                            <li><a href="https://cr.console.aliyun.com/repository/cn-hangzhou/ossrs/srs/images" target="_blank">阿里云镜像</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            Wiki文档<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://github.com/ossrs/srs/tree/3.0release#usage" target="_blank">SRS 3.0 快速入门</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v3_CN_Home" target="_blank">SRS 3.0 中文文档</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v3_EN_Home" target="_blank">SRS 3.0 English</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://github.com/ossrs/srs/tree/4.0release#usage" target="_blank">SRS 4.0 快速入门</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v4_CN_Home" target="_blank">SRS 4.0 中文文档</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v4_EN_Home" target="_blank">SRS 4.0 English</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            实用工具<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../srs-console/trunk/research/console/" target="_blank">Console控制台</a></li>
+                            <li><a href="app.html">App应用下载</a></li>
+                            <li class="divider"></li>
+                            <li><a href="demo.html?page=srs_player.html" target="_blank">HTTP-FLV Player</a></li>
+                            <li><a href="demo.html?page=rtc_player.html" target="_blank">WebRTC Player</a></li>
+                            <li><a href="demo.html?page=srs_gb28181.html" target="_blank">GB28181 Player</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            在线演示<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HTTP-FLV</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HLS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HTTP-FLV</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HLS</a></li>
+                            <li><a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">SRS 4.0 WebRTC</a></li>
+                            <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS-FLV</a></li>
+                            <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS HLS</a></li>
+                            <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Push WebRTC</a></li>
+                            <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Play WebRTC</a></li>
+                            <li class="divider"></li>
+                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">一对一通话，两人房间(live)</a></li>
+                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">直播连麦，会议转直播(live)</a></li>
+                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="https://github.com/ossrs/srs#usage" target="_blank">Github</a></li> -->
+                    <li>
+                        <a href="https://github.com/ossrs/srs">
+                            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ossrs/srs?style=social">
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div>

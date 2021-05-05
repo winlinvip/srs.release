@@ -3,10 +3,7 @@
 <head>
     <title>simple-rtmp-server</title>   
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../trunk/research/players/js/srs.utility.js"></script>
     <script type="text/javascript" src="../trunk/research/players/js/winlin.utility.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -15,12 +12,10 @@
             if (!query.ip && (host === 'ossrs.net' || host === 'www.ossrs.net')) {
                 query.ip = 'r.ossrs.net';
             }
-            if (query.ip) {
-                $("#txt_ip").val(query.ip);
-            }
 
+            var page = query.page? query.page : 'srs_player.html';
             var do_redict = function(){
-                var url ="../trunk/research/players/srs_player.html?autostart=true";
+                var url = '../trunk/research/players/' + page + '?autostart=true';
                 if (query.ip) {
                     url += "&server=" + query.ip;
                     url += "&vhost=" + query.ip;
@@ -32,26 +27,7 @@
             //$("#main_modal").modal('show');
             //$("#btn_start_demo").click(do_redict);
             setTimeout(do_redict, 0);
+            //do_redict();
         });
     </script>
 </head>
-<body>
-<img src='https://ossrs.net:8443/gif/v1/sls.gif?site=ossrs.net&path=/release/demo'/>
-    <div id="main_modal" class="modal hide fade">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>在线演示</h3>
-        </div>
-        <div class="modal-body">
-            <p>
-                <div class="input-prepend input-append">
-                    <span class="add-on">您的SRS服务器IP或域名：</span>
-                    <input class="span3" id="txt_ip" type="text" value="ossrs.net">
-                </div>
-            </p>
-        </div>
-        <div class="modal-footer">
-            <a id="btn_start_demo" href="#" class="btn btn-primary">开始演示</a>
-        </div>
-    </div>
-</body>
