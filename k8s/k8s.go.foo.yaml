@@ -15,7 +15,7 @@ data:
     func main() {
         for {
             fmt.Println("Hello world!")
-            time.Sleep(1 * time.Second)
+            time.Sleep(30 * time.Second)
         }
     }
 
