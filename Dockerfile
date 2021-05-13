@@ -10,6 +10,7 @@ COPY favicon.ico /usr/local/srs.release/favicon.ico
 COPY privacy /usr/local/srs.release/privacy
 COPY nginx.html /usr/local/srs.release/nginx.html
 COPY 50x.html /usr/local/srs.release/50x.html
+COPY k8s/k8s.go.foo.yaml /usr/local/srs.release/k8s/
 COPY http-rest /usr/local/srs.release/http-rest
 COPY images /usr/local/srs.release/images
 COPY releases /usr/local/srs.release/releases
