@@ -17,6 +17,7 @@ COPY releases /usr/local/srs.release/releases
 COPY srs-console /usr/local/srs.release/srs-console
 COPY trunk /usr/local/srs.release/trunk
 COPY donation /usr/local/srs.release/donation
+COPY wiki /usr/local/srs.release/wiki
 RUN (cd /usr/local/srs.release && ln -sf . srs.release)
 RUN (cd /usr/local/srs.release && ln -sf trunk/research/console)
 RUN (cd /usr/local/srs.release && ln -sf trunk/research/players)
