@@ -29,6 +29,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="docker.html">Docker镜像</a></li>
                                 <li><a href="download.html">Binary安装包</a></li>
+                                <li><a href="app.html">App应用下载</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -158,28 +159,33 @@
                             <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
                         </ul>
                     </div>
-                    <div>
-                        请扫右侧二维码，安装移动端播放上面的演示流，
-                        源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
-                    </div>
                 </td>
-                <td class="span6 row-fluid">
-                    <br/><br/>
-                    <div class="span1"></div>
-                    <div class="span3">
-                        <br/><br/><br/><br/>
-                        <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
-                        <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
-                        <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
+                <td>
+                    <div class="span6 row-fluid">
+                        <br/><br/>
+                        <div class="span1"></div>
+                        <div class="span3">
+                            <br/><br/><br/><br/>
+                            <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
+                            <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
+                            <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
+                        </div>
+                        <div class="span1"></div>
+                        <div class="span6">
+                            <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
+                                <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
+                            </a>
+                            <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
+                                <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
+                            </a>
+                        </div>
                     </div>
-                    <div class="span1"></div>
-                    <div class="span6">
-                        <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
-                            <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
-                        </a>
-                        <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
-                            <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
-                        </a>
+                    <div>
+                        <div class="span1"></div>
+                        <div>
+                            请扫二维码安装移动端，
+                            源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -201,7 +207,7 @@ docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:2
                     <div>
                         <p><a href="#usage" name="usage"><strong>Usage</strong></a></p>
                         <p>
-                            推荐用docker方式运行SRS，<a href="docker.html">请点这里</a>
+                            推荐用docker方式运行SRS，<a href="docker.html">请点这里</a>。
                         </p>
                     </div>
                     <div>

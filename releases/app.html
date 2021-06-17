@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <img src='https://ossrs.net:8443/gif/v1/sls.gif?site=ossrs.net&path=/release/docker'/>
+    <img src='https://ossrs.net:8443/gif/v1/sls.gif?site=ossrs.net&path=/release/app'/>
     <div class="container">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
@@ -29,6 +29,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="docker.html">Docker镜像</a></li>
                                 <li><a href="download.html">Binary安装包</a></li>
+                                <li class="active"><a href="app.html">App应用下载</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -95,110 +96,27 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=1985">SRS稳定版</a>，演示流：<br/>
-                        <ul>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=bbb.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/bbb.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=avatar.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/avatar.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.m3u8</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=r.ossrs.net&port=1935&autostart=true&vhost=r.ossrs.net" target="_blank">rtmp://r.ossrs.net/live/livestream</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流：<br/>
-                        <ul>
-                            <li>HTTP-FLV：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.flv</a></li>
-                            <li>HLS(HTTP)：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.m3u8</a></li>
-                            <li>WebRTC(HTTP)：<a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
-                            <li>RTMP：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=d.ossrs.net&port=1935&autostart=true&vhost=d.ossrs.net" target="_blank">rtmp://d.ossrs.net/live/livestream</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流(HTTPS)：<br/>
-                        <ul>
-                            <li>HTTPS-FLV：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.flv</a></li>
-                            <li>HLS(HTTPS)：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.m3u8</a></li>
-                            <li>WebRTC(HTTPS)：<a href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
-                            <li>WebRTC推流：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
-                            <li>WebRTC播放：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示(SFU)：<br/>
-                        <ul>
-                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">一对一通话，两人房间(live)</a></li>
-                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">直播连麦，会议转直播(live)</a></li>
-                            <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        请扫<font color="red">右侧二维码</font>，安装移动端播放上面的演示流，
-                        源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
-                    </div>
-                </td>
-                <td class="span6 row-fluid">
-                    <br/><br/>
-                    <div class="span1"></div>
-                    <div class="span3">
-                        <br/><br/><br/><br/>
-                        <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
-                        <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
-                        <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
-                    </div>
-                    <div class="span1"></div>
-                    <div class="span6">
-                        <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
-                            <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
-                        </a>
-                        <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
-                            <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <!--
-                    <div>
-                        <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
-                        <p>
-<pre>
-echo "Run SRS 2.0 in docker" &&
-docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:2
-</pre>
-                        </p>
-                    </div>
-                    -->
-                    <div>
-                        <p><a href="https://github.com/ossrs/srs-docker/tree/v3#usage" name="srs3"><strong>SRS3</strong></a></p>
-                        <p>
-<pre>
-echo "Run SRS 3.0 in docker" &&
-docker run --rm -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:3
-
-# Or from images at Aliyun
-docker run --rm -p 1935:1935 -p 1985:1985 -p 8080:8080 \
-    registry.cn-hangzhou.aliyuncs.com/ossrs/srs:3
-</pre>
-                        </p>
-                    </div>
-                    <div>
-                        <p><a href="#binary" name="binary"><strong>Binary</strong></a></p>
-                        <p>
-                            Recommend to use docker to run, build and debug SRS.<br/>
-                            However, you can package, download and install previous versions from <a href="download.html">here</a>.<br/>
-                            推荐用docker方式运行SRS，如果你希望使用之前的<font color="red">安装包的方式</font>，<a href="download.html">请点这里</a>。
-                        </p>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div class="row-fluid">
+            <div class="span2">
+                <br/><br/><br/><br/>
+                <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
+                <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
+                <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
+            </div>
+            <div class="span3">
+                <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
+                    <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
+                </a>
+                <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
+                    <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
+                </a>
+            </div>
+            <div class="span6"></div>
+        </div>
+        <p>
+            请扫二维码安装移动端，
+            源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
+        </p>
     </div>
     <footer class="footer">
         <div class="container">
