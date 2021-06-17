@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: registry.cn-hangzhou.aliyuncs.com/ossrs/web:v1.0.37
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/web:v1.0.38
           imagePullPolicy: IfNotPresent
           resources:
             requests:
