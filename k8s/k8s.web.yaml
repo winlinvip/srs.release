@@ -125,7 +125,7 @@ spec:
             name: ossrs.net
       containers:
         - name: httpx-web
-          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.5
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.7
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -145,6 +145,7 @@ spec:
             -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -proxy=http://r.ossrs.net:1985/api/v1/
             -proxy=http://hgsw-tcp-service:1987/gif/v1
+            -proxy=http://service-d6qcui7a-1303949587.gz.apigw.tencentcs.com/service/v1/?modifyRequestHost=true
             -proxy=http://web-service:80/
           ports:
             - containerPort: 80
