@@ -143,6 +143,7 @@ spec:
             -https=443 -https=8443 -lets=false
             -sdomain ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
             -sdomain www.ossrs.net -skey ./etc/ossrs.net.key -scert ./etc/ossrs.net.pem
+            -sdomain api.ossrs.net -skey ./etc/api.ossrs.net.key -scert ./etc/api.ossrs.net.pem
             -proxy=http://r.ossrs.net:1985/api/v1/
             -proxy=http://hgsw-tcp-service:1987/gif/v1
             -proxy=http://service-d6qcui7a-1303949587.gz.apigw.tencentcs.com/service/v1/?modifyRequestHost=true
