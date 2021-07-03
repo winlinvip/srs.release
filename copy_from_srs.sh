@@ -10,8 +10,16 @@ if [[ ! -d ~/git/srs.wiki || ! -d ~/git/srs/trunk ]]; then
   exit -1
 fi
 
+if [[ ! -d ~/git/webrtc-web ]]; then
+  echo "no webrtc-web at ~/git"
+  exit -1
+fi
+
 echo "Copy wiki"
 cp -R ~/git/srs.wiki/images wiki/
+
+echo "Copy webrtc-web"
+cp -R ~/git/webrtc-web/* webrtc-web/
 
 echo "Copy console"
 rm -rf trunk/research/console && cp -R ~/git/srs/trunk/research/console trunk/research/
