@@ -148,6 +148,8 @@ spec:
             -proxy=http://webrtc-signaling-service:8888/api/webrtc/
             -proxy=http://hgsw-tcp-service:1987/gif/v1
             -proxy=http://service-oa1p55d0-1303949587.gz.apigw.tencentcs.com/service/v1/?modifyRequestHost=true
+            -proxy=http://service-oa1p55d0-1303949587.gz.apigw.tencentcs.com/im-service/v1/?modifyRequestHost=true
+            -proxy=http://service-jb6ehakq-1303949587.gz.apigw.tencentcs.com/ws-service/v1/?modifyRequestHost=true
             -proxy=http://web-service:80/
           ports:
             - containerPort: 80
