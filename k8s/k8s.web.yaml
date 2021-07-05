@@ -125,7 +125,7 @@ spec:
             name: ossrs.net
       containers:
         - name: httpx-web
-          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.7
+          image: registry.cn-hangzhou.aliyuncs.com/ossrs/httpx:v1.0.8
           imagePullPolicy: IfNotPresent
           resources:
             requests:
