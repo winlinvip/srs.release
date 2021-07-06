@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/sha256.min.js"></script>
     <style>
         body{
             padding-top: 30px;
@@ -102,8 +103,14 @@
                     SRS可用版本查询
                 </a>
             </div>
-            <div id="collapseOne" class="accordion-body collapse">
+            <div id="collapseOne" class="accordion-body">
                 <div class="accordion-inner">
+                    <div class="form-search">
+                        <input id="txtVersion" type="text" class="input span3 search-query" placeholder="例如：v3 or v3.0-r7 or v3.0.163">
+                        <button id="queryVersion" type="submit" class="btn">查询</button>
+                    </div>
+                    <label></label>
+                    <pre id="versionResult" class="hide"></pre>
                 </div>
             </div>
         </div>
@@ -115,5 +122,34 @@
     </div>
 </footer>
 </body>
+<script>
+    let service = '';
+    if (window.location.hostname == 'localhost') {
+        service = 'https://api.ossrs.net';
+    }
+    const randomID = sha256(String(Math.random() * 1000000) + new Date().getTime()).substr(0, 17);
+    console.log(`Build service=${service}, id=${randomID}`);
+
+    function showVersion(res) {
+        $('#versionResult').show();
+        $('#versionResult').text(JSON.stringify(res, null, '  '));
+    }
+
+    $(function(){
+        $('#queryVersion').click(async function() {
+            if (!$('#txtVersion').val()) {
+                showVersion({result: 'Error', reason: '请输入查询版本'});
+                return;
+            }
+
+            const r = service + '/service/v1/releases?role=h5&id=' + randomID
+                + '&version=' + $('#txtVersion').val() + '&ts=' + new Date().getTime();
+            const res = await $.post(r).promise();
+            console.log(`Request version ${r} got`, res);
+
+            showVersion(res);
+        });
+    });
+</script>
 </html>
 
