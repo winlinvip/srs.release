@@ -14,294 +14,293 @@
     </style>
 </head>
 <body>
-    <img src='https://ossrs.net/gif/v1/sls.gif?site=ossrs.net&path=/release/home'/>
-    <div class="container">
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="javascript:void(0)">SRS</a>
-                    <ul class="nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                                安装<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="docker.html">Docker镜像</a></li>
-                                <li><a href="download.html">Binary安装包</a></li>
-                                <li><a href="app.html">App应用下载</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                                Wiki文档<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="https://github.com/ossrs/srs/tree/4.0release#usage" target="_blank">SRS 4.0 快速入门</a></li>
-                                <li><a href="https://github.com/ossrs/srs/wiki/v4_CN_Home" target="_blank">SRS 4.0 中文文档</a></li>
-                                <li><a href="https://github.com/ossrs/srs/wiki/v4_EN_Home" target="_blank">SRS 4.0 English</a></li>
-                                <li class="divider"></li>
-                                <li><a href="https://github.com/ossrs/srs/tree/3.0release#usage" target="_blank">SRS 3.0 快速入门</a></li>
-                                <li><a href="https://github.com/ossrs/srs/wiki/v3_CN_Home" target="_blank">SRS 3.0 中文文档</a></li>
-                                <li><a href="https://github.com/ossrs/srs/wiki/v3_EN_Home" target="_blank">SRS 3.0 English</a></li>
-                                <li class="divider"></li>
-                                <li><a href="http://bbs.ossrs.net" target="_blank">SRS论坛：咨询和探讨</a></li>
-                                <li><a href="https://ke.qq.com/course/3202131" target="_blank">零声学院(视频)：SRS4.0入门系列</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                                实用工具<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../srs-console/trunk/research/console/" target="_blank">Console控制台</a></li>
-                                <li><a href="app.html">App应用下载</a></li>
-                                <li class="divider"></li>
-                                <li><a href="demo.html?page=srs_player.html" target="_blank">HTTP-FLV Player</a></li>
-                                <li><a href="demo.html?page=rtc_player.html" target="_blank">WebRTC Player</a></li>
-                                <li><a href="demo.html?page=srs_gb28181.html" target="_blank">GB28181 Player</a></li>
-                                <li class="divider"></li>
-                                <li><a href="https://naozhong.net.cn/miaobiao/" target="_blank">秒表(naozhong.net.cn)</a></li>
-                                <li><a href="https://www.timeanddate.com/stopwatch/" target="_blank">秒表(timeanddate.com)</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                                在线演示<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HTTP-FLV</a></li>
-                                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HLS</a></li>
-                                <li class="divider"></li>
-                                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HTTP-FLV</a></li>
-                                <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HLS</a></li>
-                                <li><a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">SRS 4.0 WebRTC</a></li>
-                                <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS-FLV</a></li>
-                                <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS HLS</a></li>
-                                <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Push WebRTC</a></li>
-                                <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Play WebRTC</a></li>
-                                <li class="divider"></li>
-                                <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">一对一通话，两人房间(live)</a></li>
-                                <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">直播连麦，会议转直播(live)</a></li>
-                                <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
-                            </ul>
-                        </li>
-                        <!-- <li><a href="https://github.com/ossrs/srs#usage" target="_blank">Github</a></li> -->
-                        <li>
-                            <a href="https://github.com/ossrs/srs">
-                                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ossrs/srs?style=social">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <div>
-                        <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
-                        <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
-                        <ol>
-                            <li>
-                                项目主页：
-                                <a href="https://github.com/nginx/nginx" target="_blank">Nginx</a>,
-                                <a href="https://github.com/arut/nginx-rtmp-module" target="_blank">NGINX-RTMP</a>,
-                                <a href="https://github.com/ossrs/srs" target="_blank">SRS</a>,
-                                <a href="https://github.com/meetecho/janus-gateway" target="_blank">Janus</a>,
-                            </li>
-                            <li>
-                                Star历史图:
-                                <a href="https://star-history.t9t.io/#ossrs/srs&nginx/nginx&arut/nginx-rtmp-module&meetecho/janus-gateway">Nginx, Nginx-RTMP, SRS and Janus</a>
-                            </li>
-                        </ol>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=1985">SRS稳定版</a>，演示流：<br/>
-                        <ul>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=bbb.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/bbb.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=avatar.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/avatar.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.flv</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.m3u8</a></li>
-                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=r.ossrs.net&port=1935&autostart=true&vhost=r.ossrs.net" target="_blank">rtmp://r.ossrs.net/live/livestream</a></li>
+<img src='https://ossrs.net/gif/v1/sls.gif?site=ossrs.net&path=/release/home'/>
+<div class="container">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="javascript:void(0)">SRS</a>
+                <ul class="nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            安装<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="docker.html">Docker镜像</a></li>
+                            <li><a href="download.html">Binary安装包</a></li>
+                            <li><a href="app.html">App应用下载</a></li>
                         </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流：<br/>
-                        <ul>
-                            <li>HTTP-FLV：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.flv</a></li>
-                            <li>HLS(HTTP)：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.m3u8</a></li>
-                            <li>WebRTC(HTTP)：<a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
-                            <li>RTMP：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=d.ossrs.net&port=1935&autostart=true&vhost=d.ossrs.net" target="_blank">rtmp://d.ossrs.net/live/livestream</a></li>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            Wiki文档<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://github.com/ossrs/srs/tree/4.0release#usage" target="_blank">SRS 4.0 快速入门</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v4_CN_Home" target="_blank">SRS 4.0 中文文档</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v4_EN_Home" target="_blank">SRS 4.0 English</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://github.com/ossrs/srs/tree/3.0release#usage" target="_blank">SRS 3.0 快速入门</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v3_CN_Home" target="_blank">SRS 3.0 中文文档</a></li>
+                            <li><a href="https://github.com/ossrs/srs/wiki/v3_EN_Home" target="_blank">SRS 3.0 English</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://bbs.ossrs.net" target="_blank">SRS论坛：咨询和探讨</a></li>
+                            <li><a href="https://ke.qq.com/course/3202131" target="_blank">零声学院(视频)：SRS4.0入门系列</a></li>
                         </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流(HTTPS)：<br/>
-                        <ul>
-                            <li>HTTPS-FLV：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.flv</a></li>
-                            <li>HLS(HTTPS)：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.m3u8</a></li>
-                            <li>WebRTC(HTTPS)：<a href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
-                            <li>WebRTC推流：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
-                            <li>WebRTC播放：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            实用工具<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../srs-console/trunk/research/console/" target="_blank">Console控制台</a></li>
+                            <li><a href="app.html">App应用下载</a></li>
+                            <li class="divider"></li>
+                            <li><a href="demo.html?page=srs_player.html" target="_blank">HTTP-FLV Player</a></li>
+                            <li><a href="demo.html?page=rtc_player.html" target="_blank">WebRTC Player</a></li>
+                            <li><a href="demo.html?page=srs_gb28181.html" target="_blank">GB28181 Player</a></li>
+                            <li class="divider"></li>
+                            <li><a href="https://naozhong.net.cn/miaobiao/" target="_blank">秒表(naozhong.net.cn)</a></li>
+                            <li><a href="https://www.timeanddate.com/stopwatch/" target="_blank">秒表(timeanddate.com)</a></li>
                         </ul>
-                    </div>
-                    <div>
-                        <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示(SFU)：<br/>
-                        <ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            在线演示<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HTTP-FLV</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">SRS 3.0 HLS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HTTP-FLV</a></li>
+                            <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">SRS 4.0 HLS</a></li>
+                            <li><a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">SRS 4.0 WebRTC</a></li>
+                            <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS-FLV</a></li>
+                            <li><a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">SRS 4.0 HTTPS HLS</a></li>
+                            <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Push WebRTC</a></li>
+                            <li><a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">SRS 4.0 Play WebRTC</a></li>
+                            <li class="divider"></li>
                             <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">一对一通话，两人房间(live)</a></li>
                             <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">直播连麦，会议转直播(live)</a></li>
                             <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
                         </ul>
+                    </li>
+                    <!-- <li><a href="https://github.com/ossrs/srs#usage" target="_blank">Github</a></li> -->
+                    <li>
+                        <a href="https://github.com/ossrs/srs">
+                            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ossrs/srs?style=social">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <div>
+                    <p><a href="#charts" name="charts"><strong>Statistics</strong></a></p>
+                    <p><canvas id="chart_stars" width="0" height="280"></canvas></p>
+                    <ol>
+                        <li>
+                            项目主页：
+                            <a href="https://github.com/nginx/nginx" target="_blank">Nginx</a>,
+                            <a href="https://github.com/arut/nginx-rtmp-module" target="_blank">NGINX-RTMP</a>,
+                            <a href="https://github.com/ossrs/srs" target="_blank">SRS</a>,
+                            <a href="https://github.com/meetecho/janus-gateway" target="_blank">Janus</a>,
+                        </li>
+                        <li>
+                            Star历史图:
+                            <a href="https://star-history.t9t.io/#ossrs/srs&nginx/nginx&arut/nginx-rtmp-module&meetecho/janus-gateway">Nginx, Nginx-RTMP, SRS and Janus</a>
+                        </li>
+                    </ol>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <div>
+                    <a href="http://ossrs.net/console/ng_index.html#/summaries?host=r.ossrs.net&port=1985">SRS稳定版</a>，演示流：<br/>
+                    <ul>
+                        <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=bbb.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/bbb.flv</a></li>
+                        <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=avatar.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/avatar.flv</a></li>
+                        <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.flv</a></li>
+                        <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=r.ossrs.net&port=80&autostart=true&vhost=r.ossrs.net&schema=http" target="_blank">http://r.ossrs.net/live/livestream.m3u8</a></li>
+                        <li><a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=r.ossrs.net&port=1935&autostart=true&vhost=r.ossrs.net" target="_blank">rtmp://r.ossrs.net/live/livestream</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流：<br/>
+                    <ul>
+                        <li>HTTP-FLV：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.flv</a></li>
+                        <li>HLS(HTTP)：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=80&autostart=true&vhost=d.ossrs.net&schema=http" target="_blank">http://d.ossrs.net/live/livestream.m3u8</a></li>
+                        <li>WebRTC(HTTP)：<a href="http://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&port=1985&autostart=true" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
+                        <li>RTMP：<a href="http://ossrs.net/players/srs_player.html?app=live&stream=livestream&server=d.ossrs.net&port=1935&autostart=true&vhost=d.ossrs.net" target="_blank">rtmp://d.ossrs.net/live/livestream</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示流(HTTPS)：<br/>
+                    <ul>
+                        <li>HTTPS-FLV：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.flv&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.flv</a></li>
+                        <li>HLS(HTTPS)：<a href="https://ossrs.net/players/srs_player.html?app=live&stream=livestream.m3u8&server=d.ossrs.net&port=443&autostart=true&vhost=d.ossrs.net&schema=https" target="_blank">https://d.ossrs.net/live/livestream.m3u8</a></li>
+                        <li>WebRTC(HTTPS)：<a href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https" target="_blank">webrtc://d.ossrs.net/live/livestream</a></li>
+                        <li>WebRTC推流：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_publisher.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
+                        <li>WebRTC播放：<a class="srs_webrtc_stream" href="https://ossrs.net/players/rtc_player.html?vhost=d.ossrs.net&server=d.ossrs.net&api=443&autostart=true&schema=https&stream=show" target="_blank">webrtc://d.ossrs.net/live/show</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="http://ossrs.net/console/ng_index.html#/summaries?host=d.ossrs.net&port=1985">SRS开发版</a>，演示(SFU)：<br/>
+                    <ul>
+                        <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">一对一通话，两人房间(live)</a></li>
+                        <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/one2one.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">直播连麦，会议转直播(live)</a></li>
+                        <li><a class="srs_webrtc_room" href="https://ossrs.net/demos/room.html?autostart=true&wss=wss&wsh=d.ossrs.net&host=d.ossrs.net&room=live" target="_blank">多人通话，多人房间(live)</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="span6 row-fluid">
+                    <br/><br/>
+                    <div class="span1"></div>
+                    <div class="span3">
+                        <br/><br/><br/><br/>
+                        <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
+                        <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
+                        <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
                     </div>
-                </td>
-                <td>
-                    <div class="span6 row-fluid">
-                        <br/><br/>
-                        <div class="span1"></div>
-                        <div class="span3">
-                            <br/><br/><br/><br/>
-                            <label id="show-ios-live"><img src="../images/download-ios.png"/></label>
-                            <!-- <label id="show-andriod-live"><img src="../images/download-andriod.jpg"/></label> -->
-                            <a href="https://github.com/ossrs/flutter_live"><img src="../images/download-github.png"/></a>
-                        </div>
-                        <div class="span1"></div>
-                        <div class="span6">
-                            <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
-                                <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
-                            </a>
-                            <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
-                                <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
-                            </a>
-                        </div>
+                    <div class="span1"></div>
+                    <div class="span6">
+                        <a href="../images/srs-live-ios.jpg" target="_blank" id="srs-live-ios">
+                            <img src="../images/srs-live-ios2.jpg" width="200" height="254" title="扫描二维码，下载iOS版"/>
+                        </a>
+                        <a href="../images/srs-live-android.jpg" target="_blank" id="srs-live-andriod" style="display:none">
+                            <img src="../images/srs-live-android2.jpg" width="200" height="254" title="扫描二维码，下载Android版"/>
+                        </a>
                     </div>
+                </div>
+                <div>
+                    <div class="span1"></div>
                     <div>
-                        <div class="span1"></div>
-                        <div>
-                            请扫二维码安装移动端，
-                            源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
-                        </div>
+                        请扫二维码安装移动端，
+                        源码在<a href="https://github.com/ossrs/flutter_live">这里</a>。
                     </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <!--
-                    <div>
-                        <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
-                        <p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <!--
+                <div>
+                    <p><a href="https://github.com/ossrs/srs-docker/tree/v2#srs2" name="srs2"><strong>SRS2</strong></a></p>
+                    <p>
 <pre>
 echo "Run SRS 2.0 in docker" &&
 docker run -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:2
 </pre>
+                    </p>
+                </div>
+                -->
+                <div>
+                    <p><a href="#usage" name="usage"><strong>Usage</strong></a></p>
+                    <p>
+                        推荐用docker方式运行SRS，<a href="docker.html">请点这里</a>。
+                    </p>
+                </div>
+                <div>
+                    <p><a href="#binary" name="binary"><strong>Binary</strong></a></p>
+                    <p>
+                        如果你希望使用安装包，<a href="download.html">请点这里</a>。
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <div>
+                    <p><a href="#contact" name="contact"><strong>Contact</strong></a></p>
+                    <p>
+                        <!--
+                            <a href="../images/wx_video.jpg" target="_blank"><img src="../images/wx_video3.jpg" alt="微信视频号: ossrs" title="微信视频号: ossrs"/></a>
+                        -->
+                            <a href="../images/srs-server.jpg" target="_blank"><img src="../images/srs-server3.jpg" alt="微信公众号: srs-server" title="微信公众号: srs-server"/></a>
+                        <!--
+                            <a href="../images/wechat.jpg" target="_blank"><img src="../images/wechat3.jpg" alt="微信号: winlinvip" title="微信号: winlinvip"/></a>
+                        -->
                         </p>
-                    </div>
-                    -->
-                    <div>
-                        <p><a href="#usage" name="usage"><strong>Usage</strong></a></p>
+                        <!--
                         <p>
-                            推荐用docker方式运行SRS，<a href="docker.html">请点这里</a>。
+                            <a href="../images/douyin.jpg" target="_blank"><img src="../images/douyin3.jpg" alt="抖音号: ossrs" title="抖音号: ossrs"/></a>
+                            <a href="../images/kuaishou.jpg" target="_blank"><img src="../images/kuaishou3.jpg" alt="快手号: winlin" title="快手号: winlin"/></a>
+                            <a href="../images/bilibili.jpg" target="_blank"><img src="../images/bilibili3.jpg" alt="B站: 430256302" title="B站: 430256302"/></a>
                         </p>
-                    </div>
-                    <div>
-                        <p><a href="#binary" name="binary"><strong>Binary</strong></a></p>
-                        <p>
-                            如果你希望使用安装包，<a href="download.html">请点这里</a>。
-                        </p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <div>
-                        <p><a href="#contact" name="contact"><strong>Contact</strong></a></p>
-                        <p>
-                            <!--
-                                <a href="../images/wx_video.jpg" target="_blank"><img src="../images/wx_video3.jpg" alt="微信视频号: ossrs" title="微信视频号: ossrs"/></a>
-                            -->
-                                <a href="../images/srs-server.jpg" target="_blank"><img src="../images/srs-server3.jpg" alt="微信公众号: srs-server" title="微信公众号: srs-server"/></a>
-                            <!--
-                                <a href="../images/wechat.jpg" target="_blank"><img src="../images/wechat3.jpg" alt="微信号: winlinvip" title="微信号: winlinvip"/></a>
-                            -->
-                            </p>
-                            <!--
-                            <p>
-                                <a href="../images/douyin.jpg" target="_blank"><img src="../images/douyin3.jpg" alt="抖音号: ossrs" title="抖音号: ossrs"/></a>
-                                <a href="../images/kuaishou.jpg" target="_blank"><img src="../images/kuaishou3.jpg" alt="快手号: winlin" title="快手号: winlin"/></a>
-                                <a href="../images/bilibili.jpg" target="_blank"><img src="../images/bilibili3.jpg" alt="B站: 430256302" title="B站: 430256302"/></a>
-                            </p>
-                            -->
-                    </div>
-                </td>
-            </tr>
-        </table>
+                        -->
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>&copy;2013~2021 SRS <a href="https://beian.miit.gov.cn">京ICP备19056366号</a></p>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <p>&copy;2013~2021 SRS <a href="https://beian.miit.gov.cn">京ICP备19056366号</a></p>
-        </div>
-    </footer>
-</body>
+</footer>
 <script>
-
-var labels =            [       '16.04', '16.10', '17.04', '17.10', '18.04', '18.10', '19.04', '19.10', '20.04', '20.10', '21.04', '21.07'];
-var nginxStars =        { data: [870,    1800,    3340,     4050,   5310,    6480,    8060,    9912,    11506,    12716,   13851,  14262], ratio:1, label: 'NGINX-Stars', color: "rgba(90,191,99,1)"};
-var nginxRTMPStars =    { data: [2850,   3570,    4500,     5320,   6190,    6900,    7718,    8500,    9335,     10078,   10819,  11041], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgb(90,99,191)"};
-var srsStars =          { data: [400,    1000,    1800,     2600,   3500,    4500,    5533,    6527,    8210,     9678,    11342,  14938], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
-var janusStars =        { data: [300,    700,     1000,     1300,   1700,    2100,    2500,    3000,    3440,     4690,    5487,   5699], ratio:1, label: 'Janus-Stars', color: "rgb(238,209,21)"};
-var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
-    pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
-    pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
-};
-var datasets = [nginxStars, nginxRTMPStars, srsStars, janusStars];
-for (var i = 0; i < datasets.length; i++) {
-    var o = datasets[i]; 
-    for (var j = 0; j < o.data.length; j++) {
-        o.data[j] /= o.ratio;
+    var labels =            [       '16.04', '16.10', '17.04', '17.10', '18.04', '18.10', '19.04', '19.10', '20.04', '20.10', '21.04', '21.07'];
+    var nginxStars =        { data: [870,    1800,    3340,     4050,   5310,    6480,    8060,    9912,    11506,    12716,   13851,  14262], ratio:1, label: 'NGINX-Stars', color: "rgba(90,191,99,1)"};
+    var nginxRTMPStars =    { data: [2850,   3570,    4500,     5320,   6190,    6900,    7718,    8500,    9335,     10078,   10819,  11041], ratio:1, label: 'NGINX-RTMP-Stars', color: "rgb(90,99,191)"};
+    var srsStars =          { data: [400,    1000,    1800,     2600,   3500,    4500,    5533,    6527,    8210,     9678,    11342,  14938], ratio:1, label: 'SRS-Stars', color: "rgba(212,90,90,1)"};
+    var janusStars =        { data: [300,    700,     1000,     1300,   1700,    2100,    2500,    3000,    3440,     4690,    5487,   5699], ratio:1, label: 'Janus-Stars', color: "rgb(238,209,21)"};
+    var options = {fill: false, lineTension: 0.1, borderCapStyle: 'butt', borderDash: [], borderDashOffset: 0.0, borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)", pointBackgroundColor: "#fff", pointBorderWidth: 1, pointHoverRadius: 5,
+        pointHoverBorderColor: "rgba(220,220,220,1)", pointHoverBorderWidth: 2, pointRadius: 1, pointHitRadius: 10, spanGaps: false
+    };
+    var datasets = [nginxStars, nginxRTMPStars, srsStars, janusStars];
+    for (var i = 0; i < datasets.length; i++) {
+        var o = datasets[i];
+        for (var j = 0; j < o.data.length; j++) {
+            o.data[j] /= o.ratio;
+        }
+        o["borderColor"] = o["backgroundColor"] = o["pointHoverBackgroundColor"] = o["color"];
+        for (var key in options) {
+            o[key] = options[key];
+        }
+        for (var j = 0; j < o.data.length; j++) {
+            o.data[j] = parseInt(o.data[j] * 10) / 10.0;
+        }
     }
-    o["borderColor"] = o["backgroundColor"] = o["pointHoverBackgroundColor"] = o["color"];
-    for (var key in options) {
-        o[key] = options[key];
-    }
-    for (var j = 0; j < o.data.length; j++) {
-        o.data[j] = parseInt(o.data[j] * 10) / 10.0;
-    }
-}
 
-new Chart(document.getElementById("chart_stars"), { type: 'line', data: { labels: labels,
-    datasets: [nginxStars, nginxRTMPStars, srsStars, janusStars] }, options: {} });
+    new Chart(document.getElementById("chart_stars"), { type: 'line', data: { labels: labels,
+        datasets: [nginxStars, nginxRTMPStars, srsStars, janusStars] }, options: {} });
 
-$(function(){
-    $('#show-ios-live').click(function () {
-        $('#srs-live-andriod').hide();
-        $('#srs-live-ios').show();
+    $(function(){
+        $('#show-ios-live').click(function () {
+            $('#srs-live-andriod').hide();
+            $('#srs-live-ios').show();
+        });
+        $('#show-andriod-live').click(function () {
+            $('#srs-live-andriod').show();
+            $('#srs-live-ios').hide();
+        });
     });
-    $('#show-andriod-live').click(function () {
-        $('#srs-live-andriod').show();
-        $('#srs-live-ios').hide();
+
+    let webrtcStream = Number(new Date().getTime() + parseInt(String(Math.random() * 10000000000))).toString(16).substr(3);
+    $('.srs_webrtc_stream').each(function (i, e) {
+        $(e).attr('href', $(e).attr('href').replace('stream=show', 'stream=' + webrtcStream));
+        $(e).text($(e).text().replace('/show', '/' + webrtcStream));
     });
-});
 
-let webrtcStream = Number(new Date().getTime() + parseInt(String(Math.random() * 10000000000))).toString(16).substr(3);
-$('.srs_webrtc_stream').each(function (i, e) {
-    $(e).attr('href', $(e).attr('href').replace('stream=show', 'stream=' + webrtcStream));
-    $(e).text($(e).text().replace('/show', '/' + webrtcStream));
-});
-
-let webrtcRoom = Number(new Date().getTime() + parseInt(String(Math.random() * 10000000000))).toString(16).substr(3);
-$('.srs_webrtc_room').each(function (i, e) {
-    $(e).attr('href', $(e).attr('href').replace('room=live', 'room=' + webrtcRoom));
-    $(e).text($(e).text().replace('live', webrtcRoom));
-});
+    let webrtcRoom = Number(new Date().getTime() + parseInt(String(Math.random() * 10000000000))).toString(16).substr(3);
+    $('.srs_webrtc_room').each(function (i, e) {
+        $(e).attr('href', $(e).attr('href').replace('room=live', 'room=' + webrtcRoom));
+        $(e).text($(e).text().replace('live', webrtcRoom));
+    });
 </script>
+</body>
 </html>
 

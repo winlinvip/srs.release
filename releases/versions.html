@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/tim-js.js"></script>
+    <script type="text/javascript" src="js/tim-upload-plugin.js"></script>
     <script type="text/javascript" src="js/sha256.min.js"></script>
     <style>
         body{
@@ -103,7 +105,7 @@
                     SRS可用版本查询
                 </a>
             </div>
-            <div id="collapseOne" class="accordion-body">
+            <div class="accordion-body">
                 <div class="accordion-inner">
                     <div class="form-search">
                         <input id="txtVersion" type="text" class="input span3 search-query" placeholder="例如：v3 or v3.0-r7 or v3.0.163">
@@ -115,13 +117,34 @@
             </div>
         </div>
     </div>
+    <div class="accordion">
+        <div class="accordion-group">
+            <div class="accordion-heading" sc-collapse="in">
+                <a class="accordion-toggle" href="javascript:void(0)">
+                    SRS订阅通知
+                </a>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-inner">
+                    <div class="form-search">
+                        <input id="userId" type="text" class="input span1 search-query" placeholder="User">
+                        <input id="password" type="password" class="input span2 search-query" placeholder="Password">
+                        <button id="login" type="submit" class="btn">登录</button>
+                        <button id="logout" type="submit" class="btn hide">注销登录</button>
+                    </div>
+                    <label></label>
+                    <pre id="outputs" class="hide"></pre>
+                    <pre id="message" class="hide"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <footer class="footer">
     <div class="container">
         <p>&copy;2013~2021 SRS <a href="https://beian.miit.gov.cn">京ICP备19056366号</a></p>
     </div>
 </footer>
-</body>
 <script>
     let service = '';
     if (window.location.hostname == 'localhost') {
@@ -133,6 +156,16 @@
     function showVersion(res) {
         $('#versionResult').show();
         $('#versionResult').text(JSON.stringify(res, null, '  '));
+    }
+
+    function output(res) {
+        $('#outputs').show();
+        $('#outputs').text(JSON.stringify(res, null, '  '));
+    }
+
+    function message(res) {
+        $('#message').show();
+        $('#message').text(JSON.stringify(res, null, '  '));
     }
 
     $(function(){
@@ -149,7 +182,35 @@
 
             showVersion(res);
         });
+
+        $('#login').click(async () => {
+            const conf = await $.post(service + '/im-service/v1/login?user=' + $('#userId').val() + '&password=' + sha256($('#password').val())).promise();
+            console.log('server login ok', conf); output(conf);
+
+            const tim = TIM.create({SDKAppID: conf.SDKAppID});
+            tim.setLogLevel(1); // 0: Normal, 1: Release, 2: Warning, 3: Error, 4: Disabled.
+            tim.registerPlugin({'tim-upload-plugin': TIMUploadPlugin});
+            tim.on(TIM.EVENT.SDK_READY, async (event) => {
+                $('#rooms').show();
+            });
+            tim.on(TIM.EVENT.MESSAGE_RECEIVED, async (event) => {
+                console.log('received message', event); message(event);
+                event.data[0].payload.local = new Date().getTime(); output(event.data[0].payload);
+            });
+            tim.on(TIM.EVENT.KICKED_OUT, async (event) => {
+                console.log('kicked out', event);
+                $('#logout').hide(); $('#login').show();
+            });
+            await tim.login({userID: conf.userID, userSig: conf.userSig});
+
+            $('#logout').show(); $('#login').hide();
+            $('#logout').click(async () => {
+                await tim.logout();
+                $('#logout').hide(); $('#login').show();
+            });
+        });
     });
 </script>
+</body>
 </html>
 
