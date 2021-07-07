@@ -185,7 +185,7 @@
 
         $('#login').click(async () => {
             const conf = await $.post(service + '/im-service/v1/login?user=' + $('#userId').val() + '&password=' + sha256($('#password').val())).promise();
-            console.log('server login ok', conf); output(conf);
+            console.log('server login ok', conf); output(conf); // TODO: FIXME: Use user+token for auth for other APIs.
 
             const tim = TIM.create({SDKAppID: conf.SDKAppID});
             tim.setLogLevel(1); // 0: Normal, 1: Release, 2: Warning, 3: Error, 4: Disabled.
@@ -195,7 +195,12 @@
             });
             tim.on(TIM.EVENT.MESSAGE_RECEIVED, async (event) => {
                 console.log('received message', event); message(event);
-                event.data[0].payload.local = new Date().getTime(); output(event.data[0].payload);
+                let r = event.data[0].payload;
+                r.local = new Date().getTime();
+                if (r.text && r.text.indexOf('{"') === 0) {
+                    r.text = JSON.parse(r.text);
+                }
+                output(r);
             });
             tim.on(TIM.EVENT.KICKED_OUT, async (event) => {
                 console.log('kicked out', event);
